@@ -1,13 +1,12 @@
 import React from "react"
+import Home from "./pages/Home"
 
 function App() {
 
   return (
-    <>
-      <div className=" font-bold underline text-green-400">
-        This is App
-      </div>
-    </>
+    <div className=" font-poppins">
+      <Home />
+    </div>
   )
 }
 
