@@ -56,7 +56,7 @@ const MiniProfile = () => {
     return (
         <div className=' bg-background w-full rounded-xl  p-6  text-text-primary flex flex-col gap-4 text-sm'>
             <div className=' flex gap-2'>
-                <img className='w-10 h-10 object-contain rounded-full' src={myDp} alt='dp' />
+                <img className='w-10 h-10 object-contain rounded-full bg-black' src={myDp} alt='dp' />
                 <div>
                     <div className='font-semibold'>Shashank Jagtap</div>
                     <span >@shashak.jagtap</span>

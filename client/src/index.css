@@ -17,6 +17,29 @@ body {
 .home {
   position: relative;
   display: grid;
-  grid-template-columns: 18rem auto 20rem;
+  grid-template-columns: 20rem auto 24rem;
   gap: 1rem;
+}
+
+/* scrollbar.css */
+
+/* Set the width and height of the scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track styles */
+::-webkit-scrollbar-track {
+  background: #f1f1f150;
+}
+
+/* Handle styles */
+::-webkit-scrollbar-thumb {
+  background: #a4a5a550;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #87878750;
 }
