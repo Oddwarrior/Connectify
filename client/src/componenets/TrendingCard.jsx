@@ -21,7 +21,7 @@ const TrendingCard = () => {
             <div className='overflow-auto px-4 h-44'>
                 {
                     trendingHashtags.map((hastag) => (
-                        <div className=' w-full rounded-xl p-1  flex justify-between items-center gap-4 text-sm'>
+                        <div key={hastag} className=' w-full rounded-xl p-1  flex justify-between items-center gap-4 text-sm'>
                             {hastag}
                         </div>
                     ))

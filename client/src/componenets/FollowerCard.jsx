@@ -1,5 +1,4 @@
 import React from 'react'
-import Dp from "../assets/rutika_dp.png"
 
 const FollowerCard = () => {
 
@@ -43,7 +42,7 @@ const FollowerCard = () => {
             <div className='overflow-auto h-56 px-4'>
                 {
                     followers.map((follower) => (
-                        <div className=' w-full rounded-xl p-2  flex justify-between items-center gap-4 text-sm'>
+                        <div key={follower.id} className=' w-full rounded-xl p-2  flex justify-between items-center gap-4 text-sm'>
                             <div className='flex gap-2'>
                                 <img className='w-10 h-10 object-contain rounded-full bg-black' src={follower.image} alt='dp' />
                                 <div>
@@ -51,7 +50,7 @@ const FollowerCard = () => {
                                     <span>@{follower.username}</span>
                                 </div>
                             </div>
-                            <button className='bg-accent rounded-lg px-4 p-2 text-white font-semibold'>Follow</button>
+                            <button className='bg-accent rounded-xl px-4 p-2 text-white font-semibold'>Follow</button>
                         </div>
                     ))
                 }
