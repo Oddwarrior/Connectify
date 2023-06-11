@@ -14,11 +14,11 @@ const Post = ({ post }) => {
                     <span > {post.time}</span>
                 </div>
             </div>
-            <img className='w-full h-full bg-black rounded' src={post.image} alt='post' />
+            <img className='  w-full h-full bg-black rounded object-contain' src={post.image} alt='post' />
             <div className='flex flex-col gap-2'>
                 <div className='p-2'>{post.caption}</div>
                 <ul className='flex gap-4 items-center'>
-                    <li className='flex gap-2'> <AiOutlineHeart size={"20px"} /> <span>{post.likes}</span></li>
+                    <li className='flex gap-2'> <AiOutlineHeart size="20px" /> <span>{post.likes}</span></li>
                     <li><BiCommentDetail size={"20px"} /></li>
                     <li><LuShare size={"20px"} /></li>
                 </ul>

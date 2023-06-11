@@ -9,42 +9,42 @@ import logo from "../assets/logo.png"
 
 const LeftBar = () => {
     return (
-        <div className=' flex flex-col items-center px-6 gap-8 pt-8 border h-screen '>
-            <img className=' font-extrabold  text-lg p-2 w-40 h-20 object-contain' src={logo} />
-            <div className=''>
-                <ul className='flex flex-col gap-6 font-bold duration-300  text-text-primary '>
-                    <li>
-                        <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
-                            <HiOutlineHome size={"20px"} />
-                            Home
-                        </div>
-                    </li>
-                    <li>
-                        <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
-                            <MdOutlineNotificationsNone size={"20px"} />
-                            Notification
-                        </div>
-                    </li>
-                    <li>
-                        <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
-                            <RiAccountCircleLine size={"20px"} />
-                            Account
-                        </div>
-                    </li>
-                    <li>
-                        <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
-                            <BiBookmark size={"20px"} />
-                            Saved
-                        </div>
-                    </li>
-                    <li>
-                        <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
-                            <FiSettings size={"20px"} />
-                            Setting
-                        </div>
-                    </li>
-                </ul>
-            </div>
+        <div className=' flex flex-col items-center px-8 gap-8 pt-8 border w-full h-screen justify-start '>
+            <img className=' font-extrabold  text-lg  w-full object-contain' src={logo} />
+
+            <ul className='flex flex-col gap-6 font-bold duration-300  w-full   text-text-primary '>
+                <li>
+                    <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
+                        <HiOutlineHome size={"20px"} />
+                        Home
+                    </div>
+                </li>
+                <li>
+                    <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
+                        <MdOutlineNotificationsNone size={"20px"} />
+                        Notification
+                    </div>
+                </li>
+                <li>
+                    <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
+                        <RiAccountCircleLine size={"20px"} />
+                        Account
+                    </div>
+                </li>
+                <li>
+                    <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
+                        <BiBookmark size={"20px"} />
+                        Saved
+                    </div>
+                </li>
+                <li>
+                    <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
+                        <FiSettings size={"20px"} />
+                        Setting
+                    </div>
+                </li>
+            </ul>
+
             <MiniProfile />
 
         </div>
@@ -54,11 +54,11 @@ const LeftBar = () => {
 
 const MiniProfile = () => {
     return (
-        <div className=' bg-background  w-[250px] rounded-xl  p-6  text-text-primary flex flex-col gap-4 text-sm'>
-            <div className=' flex gap-2'>
+        <div className=' bg-background  w-full rounded-xl  p-4  text-text-primary flex flex-col gap-4 text-sm'>
+            <div className=' flex gap-2 w-[90%] text-xs  items-center'>
                 <img className='w-10 h-10 object-contain rounded-full bg-black' src={myDp} alt='dp' />
                 <div>
-                    <div className='font-semibold'>Shashank Jagtap</div>
+                    <div className='font-semibold '>Shashank Jagtap</div>
                     <span >@shashak.jagtap</span>
                 </div>
             </div>

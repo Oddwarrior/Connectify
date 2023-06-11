@@ -4,7 +4,7 @@ import RightBar from '../componenets/RightBar'
 import Middle from '../componenets/Middle'
 export default function Home() {
     return (
-        <div className=' grid  lg:grid-cols-[22rem_auto_24rem]'>
+        <div className=' grid  lg:grid-cols-[20%_50%_30%]'>
             <LeftBar />
             <Middle />
             <RightBar />

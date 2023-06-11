@@ -39,7 +39,7 @@ const FollowerCard = () => {
     return (
         <div className='bg-background rounded-xl w-full   mt-4 text-text-primary text-sm'>
             <div className=' px-6 p-4  font-semibold'>People who follow you</div>
-            <div className='overflow-auto h-56 px-4'>
+            <div className='overflow-auto  h-[35vh] px-4'>
                 {
                     followers.map((follower) => (
                         <div key={follower.id} className=' w-full rounded-xl p-2  flex justify-between items-center gap-4 text-sm'>
