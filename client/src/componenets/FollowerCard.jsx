@@ -1,4 +1,5 @@
 import React from 'react'
+import Card from './Card';
 
 const FollowerCard = () => {
 
@@ -37,9 +38,9 @@ const FollowerCard = () => {
     ];
 
     return (
-        <div className='bg-background rounded-xl w-full   mt-4 text-text-primary text-sm'>
+        <Card className=" mt-2">
             <div className=' px-6 p-4  font-semibold'>People who follow you</div>
-            <div className='overflow-auto  h-[35vh] px-4'>
+            <div className='overflow-auto  h-[34vh] px-4'>
                 {
                     followers.map((follower) => (
                         <div key={follower.id} className=' w-full rounded-xl p-2  flex justify-between items-center gap-4 text-sm'>
@@ -47,7 +48,7 @@ const FollowerCard = () => {
                                 <img className='w-10 h-10 object-contain rounded-full bg-black' src={follower.image} alt='dp' />
                                 <div>
                                     <div className='font-semibold'>{follower.name}</div>
-                                    <span>@{follower.username}</span>
+                                    <span className='dark:text-text-secondary-dark'>@{follower.username}</span>
                                 </div>
                             </div>
                             <button className='bg-accent rounded-xl px-4 p-2 text-white font-semibold'>Follow</button>
@@ -57,7 +58,7 @@ const FollowerCard = () => {
             </div>
 
 
-        </div>
+        </Card>
     )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { HiOutlineHome } from "react-icons/hi"
 import { MdOutlineNotificationsNone, MdContentCopy } from "react-icons/md"
 import { RiAccountCircleLine } from "react-icons/ri"
@@ -6,13 +6,22 @@ import { BiBookmark } from "react-icons/bi"
 import { FiSettings } from "react-icons/fi"
 import myDp from "../assets/shashank_dp.png"
 import logo from "../assets/logo.png"
+import Card from './Card'
 
 const LeftBar = () => {
+    const [theme, setTheme] = useState(false);
+    if (theme) document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+
+    const handleTheme = () => {
+        setTheme(!theme);
+    }
+    //
     return (
-        <div className=' flex flex-col items-center px-8 gap-8 pt-8 border w-full h-screen justify-start '>
+        <div className=' flex flex-col items-center px-8 gap-8 pt-8 border dark:border-gray-700 w-full h-screen justify-start '>
             <img className=' font-extrabold  text-lg  w-full object-contain' src={logo} />
 
-            <ul className='flex flex-col gap-6 font-bold duration-300  w-full   text-text-primary '>
+            <ul className='flex flex-col gap-6 font-bold duration-300  w-full  '>
                 <li>
                     <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
                         <HiOutlineHome size={"20px"} />
@@ -46,20 +55,19 @@ const LeftBar = () => {
             </ul>
 
             <MiniProfile />
-
+            <button onClick={handleTheme} > {theme ? 'Light' : 'Dark'}</button>
         </div>
     )
 }
 
-
 const MiniProfile = () => {
     return (
-        <div className=' bg-background  w-full rounded-xl  p-4  text-text-primary flex flex-col gap-4 text-sm'>
+        <Card className='flex flex-col gap-4 p-4 text-sm'>
             <div className=' flex gap-2 w-[90%] text-xs  items-center'>
                 <img className='w-10 h-10 object-contain rounded-full bg-black' src={myDp} alt='dp' />
                 <div>
                     <div className='font-semibold '>Shashank Jagtap</div>
-                    <span >@shashak.jagtap</span>
+                    <span className=' dark:text-text-secondary-dark' >@shashak.jagtap</span>
                 </div>
             </div>
             <button className='  border  border-accent  text-accent rounded-xl p-1 py-2 font-semibold'>
@@ -70,7 +78,8 @@ const MiniProfile = () => {
 
             </button>
             <button className='bg-accent rounded-xl p-1 py-2 text-white font-semibold'> logout</button>
-        </div>
+
+        </Card>
     )
 }
 

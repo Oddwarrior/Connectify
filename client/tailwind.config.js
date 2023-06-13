@@ -4,14 +4,22 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
         "text-primary": "#343A40",
         "text-secondary": "#ADB5BD",
+        "backgroundBody": "#ffffff",
         "background": "#F0F3F6",
-        "background-dark": "#DEE2E6",
-        "accent": "#48cae4"
+        "background-secondary": "#DEE2E6",
+        "accent": "#48cae4",
+
+        "backgroundBody-dark": '#082032',
+        "background-dark": '#2C394B',
+        "background-seondary-dark": "#526D82 ",
+        "text-primary-dark": "#DEE2E6",
+        "text-secondary-dark": "#9DB2BF",
       },
       fontFamily: {
         "poppins": ["Poppins"]

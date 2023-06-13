@@ -1,4 +1,5 @@
 import React from 'react'
+import Card from './Card';
 
 const TrendingCard = () => {
     const trendingHashtags = [
@@ -16,7 +17,7 @@ const TrendingCard = () => {
     ];
 
     return (
-        <div className=' bg-background rounded-xl w-full  mt-4 text-text-primary text-sm '>
+        <Card className='mt-2'>
             <div className=' px-6 p-4 font-semibold'>Trending</div>
             <div className='overflow-auto px-4 h-44'>
                 {
@@ -27,7 +28,7 @@ const TrendingCard = () => {
                     ))
                 }
             </div>
-        </div>
+        </Card>
 
 
     )
