@@ -5,16 +5,16 @@ import TrendingCard from './TrendingCard'
 
 const Search = () => {
     return (
-        <div className='flex  items-center gap-2 rounded-xl text-sm w-full  bg-background-secondary dark:bg-background-seondary-dark p-2 px-4 '>
-            <span className=' text-text-secondary'><BiSearch size="20px" /></span>
-            <input type='text' placeholder='search' className=' focus:outline-none  bg-background-secondary dark:bg-background-seondary-dark ' />
+        <div className='flex  items-center gap-2 rounded-full text-sm w-full  bg-background-secondary dark:bg-background-seondary-dark p-2 px-4  dark:bg-opacity-50 bg-opacity-50 '>
+            <span className=' text-text-secondary '><BiSearch size="20px" /></span>
+            <input type='text' placeholder='search' className=' focus:outline-none  bg-background-secondary dark:bg-background-seondary-dark dark:bg-opacity-50 bg-opacity-50 ' />
         </div>
     )
 }
 
 const RightBar = () => {
     return (
-        <div className='hidden md:flex flex-col items-center  gap-2 p-2 pr-4 pt-4 h-screen  border-background-secondary dark:border-gray-700 w-full'>
+        <div className='hidden md:flex flex-col items-center  gap-3 p-3 pt-4 h-screen  border-background-secondary dark:border-gray-700 w-full'>
             <Search />
             <FollowerCard />
             <TrendingCard />

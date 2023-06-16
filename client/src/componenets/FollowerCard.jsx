@@ -38,12 +38,12 @@ const FollowerCard = () => {
     ];
 
     return (
-        <Card className=" mt-2">
+        <Card className="mt-3">
             <div className=' px-6 p-4  font-semibold'>People who follow you</div>
-            <div className='overflow-auto  h-[34vh] px-4'>
+            <div className='overflow-auto  h-[34vh] px-6'>
                 {
                     followers.map((follower) => (
-                        <div key={follower.id} className=' w-full rounded-xl p-2  flex justify-between items-center gap-4 text-sm'>
+                        <div key={follower.id} className=' w-full rounded-xl p-2   flex justify-between items-center gap-4 text-sm'>
                             <div className='flex gap-2'>
                                 <img className='w-10 h-10 object-contain rounded-full bg-black' src={follower.image} alt='dp' />
                                 <div>
@@ -51,7 +51,7 @@ const FollowerCard = () => {
                                     <span className='dark:text-text-secondary-dark'>@{follower.username}</span>
                                 </div>
                             </div>
-                            <button className='bg-accent rounded-xl px-4 p-2 text-white font-semibold'>Follow</button>
+                            <button className='bg-accent rounded-xl px-4 p-1 text-white font-semibold'>Follow</button>
                         </div>
                     ))
                 }

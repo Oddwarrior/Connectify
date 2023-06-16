@@ -18,7 +18,7 @@ const Share = () => {
             <div className=' flex gap-4 w-full'>
                 <img className='w-10 h-10 object-contain rounded-full bg-black' src={myDp} alt='dp' />
                 <div className='w-full flex flex-col items-center justify-center'>
-                    <input type='text' onClick={() => setCreateModalOpen(true)} placeholder='Whats Happening ?' className='flex items-center gap-2 px-4 py-2 rounded-xl w-full focus:outline-none bg-background-secondary dark:bg-background-seondary-dark ' />
+                    <input type='text' onClick={() => setCreateModalOpen(true)} placeholder='Whats Happening ?' className='flex items-center gap-2 px-4 py-2 rounded-xl w-full dark:bg-opacity-50 bg-opacity-50 focus:outline-none bg-background-secondary dark:bg-background-seondary-dark ' />
 
                     <ul className='flex gap-8 pt-4 justify-center items-center'>
                         <li className='flex gap-2  items-center hover:text-accent duration-300 ' onClick={() => setImageModalOpen(true)} >

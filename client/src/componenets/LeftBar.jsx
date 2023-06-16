@@ -19,9 +19,9 @@ const LeftBar = () => {
     //
     return (
         <div className=' flex flex-col  bg-background  dark:bg-backgroundBody-dark items-center px-8 gap-8 pt-8 w-full h-screen justify-start '>
-            <img className=' font-extrabold  text-lg  w-full object-contain' src={logo} />
+            <img className=' font-extrabold p-4 text-lg  w-full object-contain' src={logo} />
 
-            <ul className='flex flex-col gap-6 font-semibold duration-300  w-full  '>
+            <ul className='flex flex-col gap-6 font-semibold duration-300  w-full pl-6  '>
                 <li>
                     <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
                         <HiOutlineHome size={"20px"} />
@@ -70,14 +70,14 @@ const MiniProfile = () => {
                     <span className=' dark:text-text-secondary-dark' >@shashak.jagtap</span>
                 </div>
             </div>
-            <button className='  border  border-accent  text-accent rounded-xl p-1 py-2 font-semibold'>
+            <button className='  border  border-accent  text-accent rounded-full p-1 py-2 font-semibold'>
                 <div className=' flex gap-2 justify-center items-center'>
                     Share
                     <MdContentCopy size={"16px"} />
                 </div>
 
             </button>
-            <button className='bg-accent rounded-xl p-1 py-2 text-white font-semibold'> logout</button>
+            <button className='bg-accent rounded-full p-1 py-2 text-white font-semibold'> logout</button>
 
         </Card>
     )
