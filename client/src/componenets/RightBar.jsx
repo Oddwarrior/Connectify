@@ -14,7 +14,7 @@ const Search = () => {
 
 const RightBar = () => {
     return (
-        <div className='hidden md:flex flex-col items-center p-6 gap-2 pt-8 h-screen border dark:border-gray-700 w-full'>
+        <div className='hidden md:flex flex-col items-center  gap-2 p-2 pr-4 pt-4 h-screen  border-background-secondary dark:border-gray-700 w-full'>
             <Search />
             <FollowerCard />
             <TrendingCard />

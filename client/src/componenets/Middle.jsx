@@ -1,6 +1,7 @@
 import React from 'react'
 import Share from './Share'
 import Post from './Post'
+import Profile from './Profile';
 
 const posts = [
     {
@@ -89,9 +90,13 @@ const posts = [
 
 const Middle = () => {
     return (
-        <div className='flex flex-col gap-2 md:gap-4 pt-6 md:px-6  overflow-auto  w-full min-w-[400px] h-screen'>
-            <Share />
-            {posts.map(post => <Post post={post} key={post.id} />)}
+        <div className='  overflow-auto  w-full min-w-[400px] h-screen border dark:border-gray-700 '>
+            <section className='w-full p-4  sticky top-0  font-bold bg-opacity-90 dark:bg-opacity-95 bg-background dark:bg-backgroundBody-dark border-b dark:border-background-dark'>Home</section>
+            <section className='flex flex-col gap-2 md:gap-4 md:p-2  '>
+                <Share />
+                {posts.map(post => <Post post={post} key={post.id} />)}
+                <Profile />
+            </section>
         </div>
     )
 }

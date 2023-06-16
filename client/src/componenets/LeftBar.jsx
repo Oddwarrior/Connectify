@@ -18,10 +18,10 @@ const LeftBar = () => {
     }
     //
     return (
-        <div className=' flex flex-col items-center px-8 gap-8 pt-8 border dark:border-gray-700 w-full h-screen justify-start '>
+        <div className=' flex flex-col  bg-background  dark:bg-backgroundBody-dark items-center px-8 gap-8 pt-8 w-full h-screen justify-start '>
             <img className=' font-extrabold  text-lg  w-full object-contain' src={logo} />
 
-            <ul className='flex flex-col gap-6 font-bold duration-300  w-full  '>
+            <ul className='flex flex-col gap-6 font-semibold duration-300  w-full  '>
                 <li>
                     <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
                         <HiOutlineHome size={"20px"} />
@@ -62,7 +62,7 @@ const LeftBar = () => {
 
 const MiniProfile = () => {
     return (
-        <Card className='flex flex-col gap-4 p-4 text-sm'>
+        <Card className='flex flex-col gap-4 p-4 text-sm bg-backgroundBody'>
             <div className=' flex gap-2 w-[90%] text-xs  items-center'>
                 <img className='w-10 h-10 object-contain rounded-full bg-black' src={myDp} alt='dp' />
                 <div>

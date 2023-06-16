@@ -10,8 +10,8 @@ export default {
       colors: {
         "text-primary": "#343A40",
         "text-secondary": "#ADB5BD",
-        "backgroundBody": "#ffffff",
-        "background": "#F0F3F6",
+        "backgroundBody": "#F7F7F7",
+        "background": "#fafaff",
         "background-secondary": "#DEE2E6",
         "accent": "#48cae4",
 
