@@ -3,7 +3,7 @@ import { Modal, Button, Group } from "@mantine/core";
 import { AiOutlineCloudUpload } from 'react-icons/ai'
 
 
-export default function ShareModal({ open, setOpen }) {
+export default function ImageShareModal({ imageModalOpen, setImageModalOpen }) {
     const initial = {
         image: "",
         caption: "",
@@ -17,7 +17,7 @@ export default function ShareModal({ open, setOpen }) {
         if (img) setImage({ ...image, image: URL.createObjectURL(img) });
     }
     const handleClose = () => {
-        setOpen(false);
+        setImageModalOpen(false);
         setImage(initial);
         console.log(image);
     }
@@ -30,7 +30,7 @@ export default function ShareModal({ open, setOpen }) {
     return (
         <>
             <Modal
-                opened={open}
+                opened={imageModalOpen}
                 onClose={handleClose}
                 title="Share Post"
                 size="lg"
@@ -65,7 +65,7 @@ export default function ShareModal({ open, setOpen }) {
             </Modal>
 
             {/* <Group position="center">
-                <Button onClick={() => setOpened(true)}>Open Modal</Button>
+                <Button onClick={() => setOpened(true)}>imageModalOpen Modal</Button>
             </Group> */}
         </>
     );
