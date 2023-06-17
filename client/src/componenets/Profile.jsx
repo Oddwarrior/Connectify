@@ -23,7 +23,7 @@ const Profile = () => {
         <div className='flex flex-col gap-2 md:gap-3 md:p-3  w-full '>
             <Card className=" overflow-hidden w-full relative">
                 <div className="h-[200px]">
-                    <img className=" h-full w-full object-cover" src="https://photofocus.com/wp-content/uploads/2022/08/kenlee-AI-generated-art-drawing-man-forest-Midjourney-HEADER-PHOTOFOCUS.jpg" />
+                    <img className=" h-full w-full object-cover" src="https://media.istockphoto.com/id/1225173869/photo/house-boat-anchored-in-lake-with-jungle-background-backwaters-kerala-india.jpg?s=612x612&w=0&k=20&c=uo-bsRQjhlT9AgeWBs_pkSvHQwStCelMC75EUpzwjHU=" />
                 </div>
                 <img className=' absolute m-auto  top-24  left-8 w-40 h-40 object-cover shadow-md rounded-full bg-black' src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aHVtYW58ZW58MHx8MHx8fDA%3D&w=1000&q=80" alt='dp' />
 

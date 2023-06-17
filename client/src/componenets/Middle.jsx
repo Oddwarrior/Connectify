@@ -92,10 +92,10 @@ const Middle = () => {
     return (
         <div className='  overflow-auto  w-full min-w-[400px] h-screen border dark:border-gray-700 '>
             <section className='w-full p-4 z-10  sticky top-0  font-bold bg-opacity-90 dark:bg-opacity-95 bg-background dark:bg-backgroundBody-dark border-b dark:border-background-dark'>Home</section>
-            {/* <section className='flex flex-col gap-2 md:gap-3 md:p-3  '>
+            <section className='flex flex-col gap-2 md:gap-3 md:p-3  '>
                 <Share />
                 {posts.map(post => <Post post={post} key={post.id} />)}
-            </section> */}
+            </section>
             <Profile />
         </div>
     )

@@ -5,9 +5,9 @@ import TrendingCard from './TrendingCard'
 
 const Search = () => {
     return (
-        <div className='flex  items-center gap-2 rounded-full text-sm w-full  bg-background-secondary dark:bg-background-seondary-dark p-2 px-4  dark:bg-opacity-50 bg-opacity-50 '>
+        <div className='flex  items-center gap-2 rounded-full text-sm w-full  bg-background-secondary dark:bg-background-seondary-dark p-2 px-4  dark:bg-opacity-40 bg-opacity-40 '>
             <span className=' text-text-secondary '><BiSearch size="20px" /></span>
-            <input type='text' placeholder='search' className=' focus:outline-none  bg-background-secondary dark:bg-background-seondary-dark dark:bg-opacity-50 bg-opacity-50 ' />
+            <input type='text' placeholder='search' className=' focus:outline-none  bg-background-secondary dark:bg-background-seondary-dark dark:bg-opacity-0 bg-opacity-0 ' />
         </div>
     )
 }

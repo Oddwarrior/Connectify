@@ -8,7 +8,7 @@ import Card from './Card'
 const Post = ({ post }) => {
     return (
         <Card className={'rounded-none md:rounded-xl'}>
-            <div className='  w-full rounded-xl  p-6 flex flex-col gap-4 text-sm'>
+            <div className='  w-full rounded-xl  p-6 flex flex-col gap-4 text-sm '>
                 <div className=' flex gap-4'>
                     <img className='w-10 h-10 object-contain rounded-full bg-black' src={post.profile_image} alt='dp' />
                     <div>

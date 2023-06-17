@@ -37,7 +37,7 @@ const LeftBar = () => {
                 <li>
                     <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
                         <RiAccountCircleLine size={"20px"} />
-                        Account
+                        Profile
                     </div>
                 </li>
                 <li>
