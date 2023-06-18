@@ -100,16 +100,18 @@ const logout = async (req, res) => {
         });
     }
 };
+
 const verify = async (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
-        res.status(403).json("You are not authorized");
+        return res.status(403).json("You are not authorized");
     }
-    const token = authHeader.split(" ")[1];
     try {
+        const token = authHeader.split(" ")[1];
         if (authHeader) {
-            jwt.verify(token, process.eventNames.JWT_SECRET, (err, user) => {
+            jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
                 if (err) {
+                    console.log(err.message);
                     throw new Error("token is not valid!");
                 }
                 req.user = user;
@@ -123,21 +125,23 @@ const verify = async (req, res, next) => {
         });
     }
 };
+
 const refresh = async (req, res) => {
-    const refreshToken = req.body.token;
-    if (!refreshToken) {
-        res.status(401).send({
-            status: "failure",
-            message: "You are not authenticated!",
-        });
-    }
     try {
+        const refreshToken = req.body.token;
+        if (!refreshToken) {
+            return res.status(401).send({
+                status: "failure",
+                message: "You are not authenticated!",
+            });
+        }
+
         const token = await User.findOne(
             { jwtToken: refreshToken },
             { jwtToken: true }
         );
         if (!token) {
-            res.status(200).send({
+            return res.status(200).send({
                 status: "failure",
                 message: "Refresh token is not valid!",
             });

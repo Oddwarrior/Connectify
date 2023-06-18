@@ -165,7 +165,7 @@ const followUser = async (req, res) => {
             } else {
                 res.status(400).send({
                     status: "success",
-                    message: "you allready follow this user",
+                    message: "you already follow this user",
                 });
             }
         } else {

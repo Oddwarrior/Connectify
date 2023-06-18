@@ -36,11 +36,11 @@ const UserSchema = new mongoose.Schema({
     },
     profilePicture: {
         type: String,
-        default: "https://static-00.iconduck.com/assets.00/avatar-default-symbolic-icon-2048x1949-pq9uiebg.png",
+        default: "http://localhost:3000/default_dp.png",
     },
     profileBanner: {
         type: String,
-        default: "https://www.gravitasgroup.com.hk/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBKzBiQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--a75c21e39787f4cd3f6f664b4bc568012b4e691c/__banner-default.jpg",
+        default: "http://localhost:3000/default_banner.png",
     },
     followers: {
         type: Array,
