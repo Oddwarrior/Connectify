@@ -45,6 +45,38 @@ const updateUser = async (req, res) => {
         });
     }
 };
+
+const updateProfilePicture = async (req, res) => {
+    try {
+        if (req.user._id === req.params.id || req.user.role === "admin") {
+            const image = res.req.file.filename;
+            const type = req.body.type;
+            if (!type) throw new Error("Type not provided");
+            const user = type == "profilePicture" ? await User.findOneAndUpdate(
+                { _id: req.params.id },
+                { $set: { profilePicture: image } },
+                { new: true }
+            ) : await User.findOneAndUpdate(
+                { _id: req.params.id },
+                { $set: { profileBanner: image } },
+                { new: true }
+            )
+            const { profilePicture, profileBanner, ...other } = user._doc;
+            res.status(200).send({
+                "status": "success",
+                "message": "Profile image uploaded successfully ",
+                "data": { profilePicture, profileBanner }
+            })
+        }
+
+    } catch (err) {
+        res.status(500).send({
+            "status": "failure",
+            "message": err.message
+        })
+    }
+}
+
 const getUser = async (req, res) => {
     try {
         const id = req.params.id;
@@ -240,6 +272,7 @@ const searchUsers = async (req, res) => {
 };
 module.exports = {
     updateUser,
+    updateProfilePicture,
     getUser,
     getFollowings,
     getFollowers,

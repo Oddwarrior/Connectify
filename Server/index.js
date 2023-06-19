@@ -6,6 +6,7 @@ const path = require('path');
 //routes
 const userRoute = require('./src/Routes/userRoute')
 const postRoute = require('./src/Routes/postRoute')
+const commentRoute = require('./src/Routes/commentRoute');
 
 const PORT = 3000;
 const app = express();
@@ -19,6 +20,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/user", userRoute);
 app.use("/api/post", postRoute);
+app.use("/api/comment", commentRoute);
+
 app.use("/", (req, res) => {
     res.send(`${req.method} Route ${req.path} not found !`);
 });
