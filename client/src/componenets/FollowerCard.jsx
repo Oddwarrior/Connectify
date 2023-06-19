@@ -45,7 +45,7 @@ const FollowerCard = () => {
                     followers.map((follower) => (
                         <div key={follower.id} className=' w-full rounded-xl p-2   flex justify-between items-center gap-4 text-sm'>
                             <div className='flex gap-2'>
-                                <img className='w-10 h-10 object-contain rounded-full bg-background-dark' src={follower.image} alt='dp' />
+                                <img className='w-10 h-10 object-cover rounded-full bg-background-dark' src={follower.image} alt='dp' />
                                 <div>
                                     <div className='font-semibold'>{follower.name}</div>
                                     <span className='dark:text-text-secondary-dark'>@{follower.username}</span>
