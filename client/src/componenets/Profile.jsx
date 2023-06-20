@@ -3,7 +3,7 @@ import Card from './Card'
 import { useState } from 'react';
 import Post from './Post';
 
-import { posts } from './Middle';
+import { posts } from './Feed';
 import EditModal from './EditModal';
 
 const Profile = () => {

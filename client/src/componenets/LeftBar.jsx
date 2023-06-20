@@ -30,14 +30,14 @@ const LeftBar = () => {
                 </li>
                 <li>
                     <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
-                        <MdOutlineNotificationsNone size={"20px"} />
-                        Notification
+                        <RiAccountCircleLine size={"20px"} />
+                        Profile
                     </div>
                 </li>
                 <li>
                     <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
-                        <RiAccountCircleLine size={"20px"} />
-                        Profile
+                        <MdOutlineNotificationsNone size={"20px"} />
+                        Notification
                     </div>
                 </li>
                 <li>
