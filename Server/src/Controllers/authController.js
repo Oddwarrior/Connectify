@@ -26,7 +26,7 @@ const signup = async (req, res) => {
         const saveuser = await createduser.save();
         res.status(200).send({
             status: "success",
-            message: "user saved successfully",
+            message: "Signup successfull",
             data: {
                 user: username,
             },

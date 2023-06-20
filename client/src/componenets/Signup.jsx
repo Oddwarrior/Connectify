@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { ENDPOINTS } from '../utils/endpoints';
+
 
 export const Signup = () => {
     const [email, setEmail] = useState('');
@@ -9,19 +13,27 @@ export const Signup = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Perform signup logic here
-        console.log('Signup form submitted');
-        console.log('Email:', email);
-        console.log('Fname:', fname);
-        console.log('Lname:', lname);
-        console.log('Username:', username);
-        console.log('Password:', password);
-        // Reset form fields
-        setEmail('');
-        setUsername('');
-        setPassword('');
+        try {
+            const URL = import.meta.env.VITE_BASE_URL + ENDPOINTS.SIGNUP;
+            const signupData = {
+                email,
+                fname,
+                lname,
+                username,
+                password
+            }
+            const response = await axios.post(URL, signupData);
+            console.log(response.data);
+            toast.success(response.data.message)
+            navigate('/auth/login')
+        }
+        catch (error) {
+            const message = error?.response?.data?.message;
+            console.log(message);
+            toast.error(message)
+        }
     };
 
     return (

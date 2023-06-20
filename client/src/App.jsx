@@ -8,7 +8,7 @@ import Feed from "./componenets/Feed";
 import Profile from "./componenets/Profile";
 
 function App() {
-  const user = true;
+  const user = false;
   return (
     <div className=" font-poppins  bg-backgroundBody text-text-primary dark:bg-backgroundBody-dark dark:text-text-primary-dark ">
       <BrowserRouter >

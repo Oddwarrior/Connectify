@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { ENDPOINTS } from '../utils/endpoints';
 
 export const Login = () => {
 
@@ -7,20 +10,30 @@ export const Login = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Perform signup logic here
-        console.log('Login form submitted');
-        console.log('Username:', username);
-        console.log('Password:', password);
-        // Reset form fields
-        setUsername('');
-        setPassword('');
+        try {
+            const URL = import.meta.env.VITE_BASE_URL + ENDPOINTS.LOGIN;
+            const loginData = {
+                username,
+                password
+            }
+            const response = await axios.post(URL, loginData);
+            console.log(response.data);
+            toast.success("Logged in as " + username)
+            // navigate('/')
+        }
+        catch (error) {
+            const message = error?.response?.data?.message;
+            console.log(message);
+            toast.error(message)
+        }
+
     };
 
     return (
         <div className=" w-full h-full flex justify-center items-center bg-background dark:bg-backgroundBody-dark">
-            <form className="lg:w-3/4 pt-10 flex flex-col gap-4 rounded-xl px-6  " onSubmit={handleSubmit}>
+            <form className="lg:w-2/3 pt-10 flex flex-col gap-4 rounded-xl px-6  " onSubmit={handleSubmit}>
                 <h2 className="text-2xl font-bold mb-6">Login</h2>
 
                 <div className=' flex flex-col justify-center '>
