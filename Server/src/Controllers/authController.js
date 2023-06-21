@@ -109,15 +109,18 @@ const verify = async (req, res, next) => {
     try {
         const token = authHeader.split(" ")[1];
         if (authHeader) {
-            jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+            jwt.verify(token, process.env.JWT_SECRET, async (err, user) => {
                 if (err) {
                     console.log(err.message);
                     throw new Error("token is not valid!");
                 }
                 req.user = user;
+                const currentUser = await User.findById({ _id: req.user._id });
+                if (!currentUser) return res.status(404).send({ message: "Account does not exist" });
                 next();
             });
         }
+
     } catch (e) {
         res.status(500).send({
             status: "failure",

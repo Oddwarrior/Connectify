@@ -36,11 +36,11 @@ const UserSchema = new mongoose.Schema({
     },
     profilePicture: {
         type: String,
-        default: "http://localhost:3000/default_dp.png",
+        default: "default_dp.png",
     },
     profileBanner: {
         type: String,
-        default: "http://localhost:3000/default_banner.png",
+        default: "default_banner.png",
     },
     followers: {
         type: Array,
