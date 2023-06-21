@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 const AuthPage = () => {
     return (
-        <div className='flex flex-col md:grid md:grid-cols-[600px_auto]  overflow-hidden '>
+        <div className='flex flex-col md:grid md:grid-cols-[40%_auto]  overflow-hidden '>
             <Toaster />
             < div className=' bg-accent w-full h-40 md:h-screen relative '>
                 <div className=' absolute m-auto w-full  pl-10 pt-10 lg:pl-32 lg:pt-40  text-white  font-bold z-10'>

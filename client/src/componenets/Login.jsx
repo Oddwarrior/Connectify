@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { ENDPOINTS } from '../utils/endpoints';
+import { useAuth } from '../contexts/AuthContext';
 
 export const Login = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const { dispatch } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,7 +21,10 @@ export const Login = () => {
                 password
             }
             const response = await axios.post(URL, loginData);
-            console.log(response.data);
+
+            const { message, status, ...userdata } = response.data;
+            dispatch({ type: "LOGIN_SUCCESS", payload: userdata })
+
             toast.success("Logged in as " + username)
             // navigate('/')
         }

@@ -6,9 +6,12 @@ import { Login } from "./componenets/Login";
 import { Signup } from "./componenets/Signup";
 import Feed from "./componenets/Feed";
 import Profile from "./componenets/Profile";
+import { useAuth } from "./contexts/AuthContext";
+
 
 function App() {
-  const user = false;
+  const { user } = useAuth();
+
   return (
     <div className=" font-poppins  bg-backgroundBody text-text-primary dark:bg-backgroundBody-dark dark:text-text-primary-dark ">
       <BrowserRouter >
