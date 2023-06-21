@@ -10,6 +10,32 @@ const reducer = (state, action) => {
         case "LOGIN_SUCCESS": return { user: action.payload, error: false };
         case "LOGIN_FAILED": return { user: null, error: action.payload };
         case "LOGOUT": return { user: null, error: null };
+        case "UPDATE_DATA":
+            return { ...state, user: { ...state.user, data: action.payload } };
+        case "UNFOLLOW":
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    data: {
+                        ...state.user.data,
+                        followings: state.user.data.followings?.filter(
+                            (following) => following !== action.payload
+                        ),
+                    },
+                },
+            };
+        case "FOLLOW":
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    data: {
+                        ...state.user.data,
+                        followings: [...state.user.data.followings, action.payload],
+                    },
+                },
+            };
         default: return state;
     }
 }

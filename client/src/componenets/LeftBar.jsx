@@ -8,13 +8,16 @@ import default_dp from "../assets/default_dp.png"
 import logo from "../assets/logo.png"
 import Card from './Card'
 import { useAuth } from '../contexts/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const LeftBar = () => {
     const [theme, setTheme] = useState(false);
     if (theme) document.documentElement.classList.add("dark");
     else document.documentElement.classList.remove("dark");
 
+    const { user } = useAuth();
+
+    const navigate = useNavigate();
     const handleTheme = () => {
         setTheme(!theme);
     }
@@ -23,25 +26,25 @@ const LeftBar = () => {
         <div className=' flex flex-col  bg-background  dark:bg-backgroundBody-dark items-center px-8 gap-8 pt-8 w-full h-screen justify-start '>
             <img className=' font-extrabold p-4 text-lg  w-full object-contain' src={logo} />
 
-            <ul className='flex flex-col gap-6 font-semibold duration-300  w-full pl-6  '>
-                <li>
-                    <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
+            <ul className='flex flex-col  gap-6 font-semibold duration-300  w-full pl-6  '>
+                <Link to="/"  >
+                    <div className=' flex gap-4  items-center   hover:text-accent hover:transition-colors '>
                         <HiOutlineHome size={"20px"} />
                         Home
                     </div>
-                </li>
-                <li>
+                </Link>
+                <Link to={`/user/${user.data.username}`}>
                     <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
                         <RiAccountCircleLine size={"20px"} />
                         Profile
                     </div>
-                </li>
-                <li>
+                </Link>
+                <Link to='/user/shubh'>
                     <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
                         <MdOutlineNotificationsNone size={"20px"} />
                         Notification
                     </div>
-                </li>
+                </Link>
                 <li>
                     <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
                         <BiBookmark size={"20px"} />
@@ -76,7 +79,6 @@ const MiniProfile = () => {
 
     const createImage = async () => {
         const response = await fetch(imgurl);
-        console.log(img);
         setImg(response.url);
     }
 
