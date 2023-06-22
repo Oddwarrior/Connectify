@@ -3,17 +3,17 @@ const User = require("../Models/userModel");
 
 const updateUser = async (req, res) => {
     if (req.user._id === req.params.id || req.user.role === "admin") {
-        if (req.body.password) {
-            try {
-                const salt = await bcrypt.genSalt(10);
-                req.body.password = await bcrypt.hash(req.body.password, salt);
-            } catch (e) {
-                res.status(500).send({
-                    status: "failure",
-                    message: e.message,
-                });
-            }
-        }
+        // if (req.body.password) {
+        //     try {
+        //         const salt = await bcrypt.genSalt(10);
+        //         req.body.password = await bcrypt.hash(req.body.password, salt);
+        //     } catch (e) {
+        //         res.status(500).send({
+        //             status: "failure",
+        //             message: e.message,
+        //         });
+        //     }
+        // }
         try {
             const user = await User.findOneAndUpdate(
                 { _id: req.params.id },
@@ -52,7 +52,7 @@ const updateProfilePicture = async (req, res) => {
             const image = res.req.file.filename;
             const type = req.body.type;
             if (!type) throw new Error("Type not provided");
-            const user = type == "profilePicture" ? await User.findOneAndUpdate(
+            const user = type === "profilePicture" ? await User.findOneAndUpdate(
                 { _id: req.params.id },
                 { $set: { profilePicture: image } },
                 { new: true }
