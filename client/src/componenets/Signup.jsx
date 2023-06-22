@@ -112,7 +112,7 @@ export const Signup = () => {
                     />
                 </div>
                 <div className="pt-4 w-full flex  items-baseline justify-between">
-                    <h1 className='cursor-pointer text-sm hover:underline'>Already have an account? <span onClick={() => navigate('/auth/login')}> Login </span> </h1>
+                    <h1 className='cursor-pointer text-sm hover:underline'>Already have an account? <span className=" text-accent" onClick={() => navigate('/auth/login')}> Login </span> </h1>
                     <button
                         className=" bg-accent hover:bg-black duration-300 text-white font-semibold py-2 px-4 rounded-full focus:outline-none  focus:border-accent focus:shadow-accent"
                         type="submit"

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Feed from './Feed'
 import Profile from './Profile'
 import { Outlet, useParams } from 'react-router-dom'

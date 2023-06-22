@@ -28,25 +28,23 @@ const Profile = () => {
 
     //fetch user
     useEffect(() => {
-        const fetchUser = async () => {
-            const res = await axios.get(
-                URL + ENDPOINTS.GET_USER_BY_USERNAME + username
-            );
-            setCurrentUser(res.data.user);
-            console.log(res.data);
-
-        };
         fetchUser();
-
-        const setFollowbutton = () => {
-            setFollowing(user.data.followings?.includes(currentUser?._id));
-        }
         setFollowbutton();
-
         setMyaccount(user.data.username === username);
+    }, [username, user.data.followings, currentUser._id]);
 
-    }, [username]);
+    const setFollowbutton = () => {
+        let intialState = user.data.followings?.includes(currentUser._id);
+        setFollowing(intialState);
+    }
 
+    const fetchUser = async () => {
+        const res = await axios.get(
+            URL + ENDPOINTS.GET_USER_BY_USERNAME + username
+        );
+        setCurrentUser(res.data.user);
+        console.log(res.data);
+    };
 
 
     //load profile images
