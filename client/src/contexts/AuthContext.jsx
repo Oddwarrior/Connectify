@@ -5,6 +5,7 @@ import axios from "axios";
 const INITIAL_STATE = {
     user: JSON.parse(localStorage.getItem('user') || null),
     error: false,
+    theme: (localStorage.getItem('theme') == undefined ? "light" : localStorage.getItem('theme'))
 }
 
 const reducer = (state, action) => {
@@ -12,6 +13,7 @@ const reducer = (state, action) => {
         case "LOGIN_SUCCESS": return { user: action.payload, error: false };
         case "LOGIN_FAILED": return { user: null, error: action.payload };
         case "LOGOUT": return { user: null, error: null };
+        case "CHANGE_THEME": return { ...state, theme: action.payload };
         case "UPDATE_DATA":
             return { ...state, user: { ...state.user, data: action.payload } };
         case "UNFOLLOW":
@@ -53,6 +55,12 @@ export const AuthProvider = ({ children }) => {
     }, [state.user]);
 
     useEffect(() => {
+        //update local storage data
+        localStorage.setItem("theme", state.theme);
+    }, [state.theme]);
+
+
+    useEffect(() => {
         //sync local storage data with database on initial render
         const syncuser = async () => {
             const URL = import.meta.env.VITE_BASE_URL;
@@ -68,7 +76,7 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ user: state.user, error: state.error, dispatch }}>
+        <AuthContext.Provider value={{ user: state.user, error: state.error, theme: state.theme, dispatch }}>
             {children}
         </AuthContext.Provider>
     )

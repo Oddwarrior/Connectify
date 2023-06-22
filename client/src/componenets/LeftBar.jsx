@@ -11,15 +11,19 @@ import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 
 const LeftBar = () => {
-    const [theme, setTheme] = useState(false);
-    if (theme) document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
+    const { user, theme, dispatch } = useAuth();
 
-    const { user } = useAuth();
+    useEffect(() => {
+        if (theme == "dark") document.documentElement.classList.add("dark");
+        else document.documentElement.classList.remove("dark");
+
+    }, [theme]);
+
 
     const navigate = useNavigate();
     const handleTheme = () => {
-        setTheme(!theme);
+        if (theme == "light") dispatch({ type: "CHANGE_THEME", payload: "dark" });
+        else dispatch({ type: "CHANGE_THEME", payload: "light" });
     }
     //
     return (
@@ -89,15 +93,15 @@ const MiniProfile = () => {
 
     return (
         <Card className='flex flex-col gap-4 p-4 text-sm bg-backgroundBody'>
-            <div className=' flex gap-2 w-[90%] text-xs  items-center'>
+            <Link to={`/user/${user.data.username}`} className=' flex gap-2 w-[90%] text-xs  items-center'>
 
-                <img className='w-10 h-10 object-contain rounded-full bg-black' src={img} alt='' />
+                <img className='w-10 h-10 object-cover  rounded-full bg-black' src={img} alt='' />
 
                 <div>
                     <div className='font-semibold  line-clamp-1 capitalize'>{fname + " " + lname}</div>
                     <span className=' dark:text-text-secondary-dark' >@{username}</span>
                 </div>
-            </div>
+            </Link>
             <button className='  border  border-accent  text-accent rounded-full p-1 py-2 font-semibold'>
                 <div className=' flex gap-2 justify-center items-center'>
                     Share

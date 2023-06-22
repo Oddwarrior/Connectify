@@ -1,28 +1,37 @@
 import React from 'react'
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Modal, Button, Group } from "@mantine/core";
 import Card from './Card';
 import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
 import { ENDPOINTS } from '../utils/endpoints';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 
 const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanner }) => {
 
     const { user, dispatch } = useAuth();
-    const [userData, setUserData] = useState({
+    const intialState = {
         fname: user.data.fname,
         lname: user.data.lname,
         description: user.data.description,
         birthdate: '',
-    });
-    const navigate = useNavigate();
-
+    };
+    const [userData, setUserData] = useState(intialState);
+    const [saving, setSaving] = useState(false);
     const profilePhotoRef = useRef();
     const profileBannerRef = useRef();
     const [newProfilePhoto, setNewProfilePhoto] = useState({ image: null, url: null });
     const [newProfileBanner, setNewProfileBanner] = useState({ image: null, url: null });
+
+    useEffect(() => {
+        setUserData(intialState);
+        setNewProfilePhoto(profilePhoto)
+        setNewProfileBanner(profileBanner)
+    }, [editModalOpen]);
+
+    const navigate = useNavigate();
 
     const onProfilePhotoChange = (e) => {
         const img = e.target.files?.[0];
@@ -44,6 +53,7 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSaving(true);
 
         try {
             let url = import.meta.env.VITE_BASE_URL;
@@ -79,22 +89,21 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
                     headers: { Authorization: "Bearer " + user.accessToken },
                 }
             );
-
+            setSaving(false);
             console.log(updatedData);
             dispatch({ type: "UPDATE_DATA", payload: updatedData.data.user });
-
+            toast.success("Profile Updated");
 
 
         } catch (error) {
             console.log(error);
+            toast.error(error.message);
         }
 
-        navigate('/user/' + user.data.username)
         handleClose();
     };
     const handleClose = () => {
-        setNewProfilePhoto(profilePhoto)
-        setNewProfileBanner(profileBanner)
+
         setEditModalOpen(false);
     }
 
@@ -180,9 +189,9 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
 
                 <button type="submit"
                     onSubmit={handleSubmit}
-                    className='bg-accent rounded-full p-1 py-2 text-white font-semibold'
+                    className='bg-accent rounded-full p-1 py-2 text-white font-semibold focus:text-gray-500'
                 >
-                    Save
+                    {saving ? "Saving.." : "Save"}
                 </button>
 
 

@@ -3,6 +3,7 @@ import Feed from './Feed'
 import Profile from './Profile'
 import { Outlet, useParams } from 'react-router-dom'
 
+
 const Middle = () => {
     const username = useParams().username;
     return (

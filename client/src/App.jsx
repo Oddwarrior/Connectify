@@ -7,6 +7,7 @@ import { Signup } from "./componenets/Signup";
 import Feed from "./componenets/Feed";
 const Profile = React.lazy(() => import("./componenets/Profile"));
 import { useAuth } from "./contexts/AuthContext";
+import ProfileSkeleton from "./componenets/skeletons/ProfileSkeleton";
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
           <Route path="/" element={user ? <Home /> : <Navigate to='auth' />} >
             <Route index element={<Navigate to='home' />} />
             <Route path="home" element={<Feed />} />
-            <Route path="user/:username" element={<Suspense fallback={<div>loading...</div>}><Profile /></Suspense>} />
+            <Route path="user/:username" element={<Suspense fallback={<ProfileSkeleton />}><Profile /></Suspense>} />
           </Route >
 
           {/* auth  */}
