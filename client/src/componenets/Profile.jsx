@@ -25,24 +25,32 @@ const Profile = () => {
     const [profileBanner, setProfileBanner] = useState(default_banner);
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [following, setFollowing] = useState(true);
+    const [loaded, setLoaded] = useState(false);
+
 
     //fetch user
     useEffect(() => {
-        fetchUser();
-        setFollowbutton();
-        setMyaccount(user.data.username === username);
-    }, [username, user.data.followings, currentUser._id]);
 
-    const setFollowbutton = () => {
-        let intialState = user.data.followings?.includes(currentUser._id);
-        setFollowing(intialState);
-    }
+        fetchUser();
+        setMyaccount(user.data.username === username);
+    }, [username, user.data.followings],);
+
+    useEffect(() => {
+        const setFollowbutton = () => {
+            let intialState = user.data.followings?.includes(currentUser._id);
+            setFollowing(intialState);
+        }
+        setFollowbutton();
+
+    }, [user.data.followings, currentUser._id]);
 
     const fetchUser = async () => {
+        // setLoaded(false);
         const res = await axios.get(
             URL + ENDPOINTS.GET_USER_BY_USERNAME + username
         );
         setCurrentUser(res.data.user);
+        // setLoaded(true);
         console.log(res.data);
     };
 
@@ -51,7 +59,7 @@ const Profile = () => {
     useEffect(() => {
         createProfilePicture(currentUser.profilePicture);
         createProfileBanner(currentUser.profileBanner)
-    }, [currentUser.profilePicture, currentUser.profileBanner]);
+    }, [currentUser]);
 
     const createProfilePicture = async (imageName) => {
         let imgurl = URL + '/' + imageName;
@@ -92,6 +100,7 @@ const Profile = () => {
     }
 
     return (
+
         <div className='flex flex-col gap-2 md:gap-3 md:p-3  w-full '>
             <Card className=" overflow-hidden w-full relative">
                 <div className="h-[200px]">
@@ -133,11 +142,12 @@ const Profile = () => {
                         </button>
                         }
                     </div>
-                    <EditModal editModalOpen={editModalOpen} setEditModalOpen={setEditModalOpen} />
+                    <EditModal editModalOpen={editModalOpen} setEditModalOpen={setEditModalOpen} profileBanner={profileBanner} profilePhoto={profilePicture} />
                 </div>
             </Card>
             <section className='flex flex-col gap-3'>
                 {posts.filter(post => post.id === 1).map(post => <Post post={post} key={post.username} />)}
+
             </section>
         </div>
     )

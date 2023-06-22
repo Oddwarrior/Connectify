@@ -1,11 +1,11 @@
-import React from "react"
+import React, { Suspense } from "react"
 import Home from "./pages/Home"
 import AuthPage from "./pages/AuthPage"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "./componenets/Login";
 import { Signup } from "./componenets/Signup";
 import Feed from "./componenets/Feed";
-import Profile from "./componenets/Profile";
+const Profile = React.lazy(() => import("./componenets/Profile"));
 import { useAuth } from "./contexts/AuthContext";
 
 
@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={user ? <Home /> : <Navigate to='auth' />} >
             <Route index element={<Navigate to='home' />} />
             <Route path="home" element={<Feed />} />
-            <Route path="user/:username" element={<Profile />} />
+            <Route path="user/:username" element={<Suspense fallback={<div>loading...</div>}><Profile /></Suspense>} />
           </Route >
 
           {/* auth  */}
