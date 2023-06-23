@@ -9,6 +9,8 @@ import EditModal from './EditModal';
 import default_dp from "../assets/default_dp.png"
 import default_banner from "../assets/default_banner.png"
 import ProfileSkeleton from './skeletons/ProfileSkeleton'
+import { MdVerified } from 'react-icons/md'
+
 
 import { posts } from './Feed';
 
@@ -36,7 +38,7 @@ const Profile = () => {
         setLoaded(false);
         fetchUser();
         setMyaccount(user.data.username === username);
-    }, [username, user.data.followings],);
+    }, [username],);
 
     useEffect(() => {
         const setFollowbutton = () => {
@@ -86,6 +88,7 @@ const Profile = () => {
             }
         );
         dispatch({ type: "FOLLOW", payload: currentUser._id })
+        currentUser?.followers?.push(user.data._id);
         console.log(res.data);
     }
     const handleUnfollow = async () => {
@@ -98,6 +101,7 @@ const Profile = () => {
             }
         );
         dispatch({ type: "UNFOLLOW", payload: currentUser._id })
+        setCurrentUser({ ...currentUser, followers: currentUser.followers.filter((follower) => follower != user.data._id) })
         console.log(res.data);
     }
 
@@ -115,7 +119,7 @@ const Profile = () => {
                     <div className=' grid grid-cols-2  w-full  pt-4 px-4'>
                         <div className=' flex  flex-col   gap-2 p-4'>
                             <section className=' flex flex-col  pt-8'>
-                                <h1 className=' font-bold  dark:text-white text-xl capitalize'>{currentUser?.fname + " " + currentUser?.lname}</h1>
+                                <h1 className=' font-bold flex  items-center gap-2 dark:text-white  text-lg sm:text-xl capitalize'>{currentUser?.fname + " " + currentUser?.lname} {currentUser?.username == 'shashankjagtap' && <MdVerified color='#48cae4' />}</h1>
                                 <h1 className=' dark:text-text-primary-dark ' >@{currentUser?.username}</h1>
                                 <h1 className=' text-xs text-text-secondary pt-2  line-clamp-3'>{currentUser?.description} </h1>
                             </section>
@@ -136,7 +140,10 @@ const Profile = () => {
                         </div>
 
                         <div className='flex  flex-col gap-2 justify-start p-6 items-end'>
-                            {!myaccount && !following && <button className='bg-accent rounded-full w-24 p-1 py-2 text-white font-semibold' onClick={handleFollow}>Follow</button>}
+                            {!myaccount && !following &&
+                                <button className={`bg-accent rounded-full p-1 px-3 min-w-[96px] text-sm   py-2 text-white font-semibold`}
+                                    onClick={handleFollow}>{currentUser?.followings?.includes(user.data._id) ? "Follow Back" : "Follow"}
+                                </button>}
                             {!myaccount && following && <button className='border border-accent rounded-full w-24 p-1 py-2 text-accent font-semibold' onClick={handleUnfollow}>Following</button>}
                             {myaccount && <button
                                 className='rounded-full w-28 py-2  bg-black dark:bg-white  text-white dark:text-black font-semibold'
