@@ -64,7 +64,7 @@ const LeftBar = () => {
             </ul>
 
             <MiniProfile />
-            <button onClick={handleTheme} > {theme ? 'Light' : 'Dark'}</button>
+            <button onClick={handleTheme} > {theme == 'dark' ? 'Light' : 'Dark'}</button>
         </div>
     )
 }

@@ -11,15 +11,14 @@ const TrendingCard = () => {
         "#TravelDiaries",
         "#TechNews",
         "#FashionInspiration",
-        "#BookLovers",
-        "#ArtisticExpression",
+
         // Add more trending hashtags as needed
     ];
 
     return (
         <Card >
             <div className=' px-6 p-4 font-semibold'>Trending</div>
-            <div className='overflow-auto px-6 h-60'>
+            <div className='overflow-auto px-6 '>
                 {
                     trendingHashtags.map((hastag) => (
                         <div key={hastag} className=' w-full rounded-xl p-1  flex flex-col  text-sm'>

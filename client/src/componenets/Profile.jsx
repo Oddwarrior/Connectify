@@ -35,9 +35,12 @@ const Profile = () => {
 
     //fetch user
     useEffect(() => {
-        setLoaded(false);
+
         fetchUser();
         setMyaccount(user.data.username === username);
+        return () => {
+            setLoaded(false);
+        };
     }, [username],);
 
     useEffect(() => {
@@ -55,7 +58,7 @@ const Profile = () => {
         );
         setCurrentUser(res.data.user);
         setLoaded(true);
-        console.log(res.data);
+        console.log("profile fetched : " + currentUser?.username);
     };
 
 
@@ -89,7 +92,7 @@ const Profile = () => {
         );
         dispatch({ type: "FOLLOW", payload: currentUser._id })
         currentUser?.followers?.push(user.data._id);
-        console.log(res.data);
+        // console.log(res.data);
     }
     const handleUnfollow = async () => {
         setFollowing(false);
@@ -102,7 +105,7 @@ const Profile = () => {
         );
         dispatch({ type: "UNFOLLOW", payload: currentUser._id })
         setCurrentUser({ ...currentUser, followers: currentUser.followers.filter((follower) => follower != user.data._id) })
-        console.log(res.data);
+        // console.log(res.data);
     }
 
     return (

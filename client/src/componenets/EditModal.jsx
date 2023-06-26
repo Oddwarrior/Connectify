@@ -116,25 +116,30 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
             radius="md"
             centered
         >
-            <form onSubmit={handleSubmit} className="  p-4  font-poppins  text-text-primary text-sm flex flex-col gap-2  w-full relative">
+            <form onSubmit={handleSubmit} className="  px-4 pb-4  font-poppins  text-text-primary text-sm flex flex-col gap-2  w-full relative">
                 <Card className=" overflow-hidden w-full mb-16 ">
                     <div onClick={() => profileBannerRef.current.click()} className="h-[150px] bg-background-seondary-dark">
-                        <img className=" h-full w-full object-cover" src={newProfileBanner.url ?? profileBanner} />
+                        <img className=" h-full w-full object-cover " src={newProfileBanner.url ?? profileBanner} />
                     </div>
 
                     <img
                         onClick={() => profilePhotoRef.current.click()}
-                        className=' absolute m-auto  top-24  left-8 w-32 h-32 object-cover shadow-md rounded-full  bg-background dark:bg-backgroundBody-dark'
+                        className='absolute m-auto  top-24  left-8 w-32 h-32 object-cover shadow-md rounded-full  bg-opacity-50 dark:bg-backgroundBody-dark'
                         src={newProfilePhoto.url ?? profilePhoto} alt='dp'
                     />
+                    {/* <div
+                        className=' z-10 absolute m-auto  top-24  left-8 w-32 h-32 object-cover shadow-md rounded-full  bg-black bg-opacity-30 dark:bg-backgroundBody-dark'
+
+                    /> */}
+
 
                 </Card>
                 <input className='hidden' type='file' accept="image/*" ref={profilePhotoRef} onChange={onProfilePhotoChange} />
                 <input className='hidden' type='file' accept="image/*" ref={profileBannerRef} onChange={onProfileBannerChange} />
 
-                <div className=" flex gap-2  w-full">
-                    <section className='w-full'>
-                        <label htmlFor="fname" className="block mb-2  font-semibold">
+                <div className=" flex gap-2  w-full pt-2">
+                    <section className='w-full '>
+                        <label htmlFor="fname" className="block mb-2   font-semibold">
                             First Name
                         </label>
                         <input
