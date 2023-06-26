@@ -10,7 +10,7 @@ import SuggestionsSkeleton from './skeletons/SuggestionsSkeleton';
 import default_dp from "../assets/default_dp.png"
 import NoSuggestions from "../assets/NoSuggestions.png"
 
-const FollowerCard = () => {
+const SuggestionCard = () => {
     const URL = import.meta.env.VITE_BASE_URL;
     const { user, dispatch } = useAuth();
 
@@ -27,7 +27,7 @@ const FollowerCard = () => {
         const { data } = await axios.get(URL + ENDPOINTS.GET_SUGGESTIONS + user.data._id);
         // console.log(data);
         console.log("Suggestions fetched : ");
-        setSugesstions(data?.users);
+        setSugesstions(data?.users?.slice(0, 4));
         setLoaded(true);
     }
 
@@ -84,7 +84,7 @@ const FollowerCard = () => {
             <div className=' max-h-[40vh] px-6'>
                 {
                     !loaded ? <SuggestionsSkeleton /> :
-                        sugesstions.slice(0, 4)?.map((user) => (
+                        sugesstions?.map((user) => (
                             <div key={user?._id} className=' w-full rounded-xl p-2   flex justify-between items-center gap-4 text-sm'>
                                 <Link to={`/user/${user?.username}`} className='flex gap-2'>
                                     <img className='w-10 h-10 object-cover rounded-full bg-background-dark' src={loaded ? URL + "/" + user?.profilePicture : default_dp} alt='dp' />
@@ -115,4 +115,4 @@ const FollowerCard = () => {
     )
 }
 
-export default FollowerCard
+export default SuggestionCard

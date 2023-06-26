@@ -1,6 +1,6 @@
 import React from 'react'
 import { BiSearch } from 'react-icons/bi'
-import FollowerCard from './FollowerCard'
+import SuggestionCard from './SuggestionCard'
 import TrendingCard from './TrendingCard'
 
 const Search = () => {
@@ -16,7 +16,7 @@ const RightBar = () => {
     return (
         <div className='hidden md:flex flex-col items-center  gap-3 p-3 pt-4 h-screen  border-background-secondary dark:border-gray-700 w-full'>
             <Search />
-            <FollowerCard />
+            <SuggestionCard />
             <TrendingCard />
         </div>
     )
