@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../Models/userModel");
+const { default: mongoose } = require("mongoose");
 
 const updateUser = async (req, res) => {
     if (req.user._id === req.params.id || req.user.role === "admin") {
@@ -173,6 +174,29 @@ const getFollowers = async (req, res) => {
         });
     }
 };
+
+const suggest = async (req, res) => {
+    try {
+
+        const userId = req.params.id;
+        const user = await User.findById(userId);
+        if (!user) {
+            throw new Error('User not found');
+        }
+        const followingIds = user.followings;
+
+        // Find users who are not in the following list
+        const suggestedUsers = await User.find({
+            _id: { $nin: [userId, ...followingIds] }
+        }).sort({ followers: -1 })
+
+        res.status(200).send({ status: "success", users: suggestedUsers });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ status: "failure", message: 'Failed to fetch suggested users' });
+    }
+}
+
 const followUser = async (req, res) => {
     try {
         const currentUser = await User.findById({ _id: req.user._id });
@@ -276,6 +300,7 @@ module.exports = {
     getUser,
     getFollowings,
     getFollowers,
+    suggest,
     followUser,
     unfollowUser,
     searchUsers,

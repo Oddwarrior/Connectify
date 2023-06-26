@@ -12,6 +12,7 @@ router.get("/:id", userController.getUser);
 router.get("/u/:username", userController.getUserByUsername);
 router.get("/followings/:username", userController.getFollowings);
 router.get("/followers/:username", userController.getFollowers);
+router.get("/suggest/:id", userController.suggest);
 router.put("/:id", authController.verify, userController.updateUser);
 router.put("/profilePicture/:id", authController.verify, upload.single('image'), userController.updateProfilePicture);
 router.put(
