@@ -7,8 +7,8 @@ const ProfileSkeleton = () => {
     return (
         <div className='flex flex-col gap-2 md:gap-3 md:p-3  w-full '>
             <Card className=" overflow-hidden w-full relative">
-                <div className='pl-12 pt-8 ' >
-                    <Skeleton circle={true} height={"120px"} width={"120px"} />
+                <div className='pl-12 pt-20 ' >
+                    <Skeleton circle={true} height={"150px"} width={"150px"} />
                 </div>
                 <div className=' grid grid-cols-2  w-full  px-4'>
                     <div className=' flex  flex-col   gap-2 p-4'>

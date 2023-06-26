@@ -36,7 +36,7 @@ export default function ImageShareModal({ imageModalOpen, setImageModalOpen }) {
                 size="lg"
                 radius="md"
             >
-                <form className="p-4 flex flex-col gap-4 text-sm text-text-primary" onSubmit={handleSubmit}>
+                <form className="p-4 flex flex-col gap-4 text-sm font-poppins text-text-primary" onSubmit={handleSubmit}>
                     <div className=" flex flex-col  items-center justify-center bg-background-secondary  border  min-h-[300px]" onClick={() => fileRef.current.click()} >
                         {!image.image && <div className=" flex gap-4 items-center justify-center font-semibold h-full">
                             <AiOutlineCloudUpload size={"20px"} />

@@ -110,11 +110,14 @@ const Profile = () => {
         !loaded ? <ProfileSkeleton /> :
             <div className='flex flex-col gap-2 md:gap-3 md:p-3  w-full '>
                 <Card className=" overflow-hidden w-full relative">
-                    <div className="h-[200px]">
-                        <img className=" h-full w-full object-cover" src={profileBanner} />
+                    <div className="h-[200px] bg-background-seondary-dark ">
+                        <img className=" h-full w-full object-cover border-none " src={profileBanner} />
                         {/* <img className=" h-full w-full object-cover" src="https://media.istockphoto.com/id/1225173869/photo/house-boat-anchored-in-lake-with-jungle-background-backwaters-kerala-india.jpg?s=612x612&w=0&k=20&c=uo-bsRQjhlT9AgeWBs_pkSvHQwStCelMC75EUpzwjHU=" /> */}
                     </div>
-                    <img className=' absolute m-auto  top-24  left-8 w-40 h-40 object-cover shadow-md rounded-full bg-black' src={profilePicture} alt='dp' />
+                    <div>
+                        <img className=' absolute m-auto  top-24  left-8 w-40 h-40 object-cover shadow-md rounded-full bg-gray-200 dark:bg-backgroundBody-dark' src={profilePicture} alt='dp' />
+
+                    </div>
 
                     <div className=' grid grid-cols-2  w-full  pt-4 px-4'>
                         <div className=' flex  flex-col   gap-2 p-4'>
@@ -144,7 +147,7 @@ const Profile = () => {
                                 <button className={`bg-accent rounded-full p-1 px-3 min-w-[96px] text-sm   py-2 text-white font-semibold`}
                                     onClick={handleFollow}>{currentUser?.followings?.includes(user.data._id) ? "Follow Back" : "Follow"}
                                 </button>}
-                            {!myaccount && following && <button className='border border-accent rounded-full w-24 p-1 py-2 text-accent font-semibold' onClick={handleUnfollow}>Following</button>}
+                            {!myaccount && following && <button className=' border-none bg-accent bg-opacity-20 rounded-full w-24 p-1 py-2 text-accent font-semibold' onClick={handleUnfollow}>Following</button>}
                             {myaccount && <button
                                 className='rounded-full w-28 py-2  bg-black dark:bg-white  text-white dark:text-black font-semibold'
                                 onClick={() => setEditModalOpen(true)}

@@ -102,7 +102,7 @@ const MiniProfile = () => {
                     <span className=' dark:text-text-secondary-dark' >@{username}</span>
                 </div>
             </Link>
-            <button className='  border  border-accent  text-accent rounded-full p-1 py-2 font-semibold'>
+            <button className='  border-none  text-accent bg-accent bg-opacity-20 rounded-full p-1 py-2 font-semibold'>
                 <div className=' flex gap-2 justify-center items-center'>
                     Share
                     <MdContentCopy size={"16px"} />

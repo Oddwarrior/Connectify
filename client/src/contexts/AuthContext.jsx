@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case "LOGIN_SUCCESS": return { user: action.payload, error: false };
+        case "LOGIN_SUCCESS": return { user: action.payload, error: false, theme: "light" };
         case "LOGIN_FAILED": return { user: null, error: action.payload };
         case "LOGOUT": return { user: null, error: null };
         case "CHANGE_THEME": return { ...state, theme: action.payload };

@@ -99,7 +99,7 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
             console.log(error);
             toast.error(error.message);
         }
-
+        navigate(0);
         handleClose();
     };
     const handleClose = () => {
@@ -116,15 +116,15 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
             radius="md"
             centered
         >
-            <form onSubmit={handleSubmit} className="  p-4 text-sm flex flex-col gap-2  w-full relative">
+            <form onSubmit={handleSubmit} className="  p-4  font-poppins  text-text-primary text-sm flex flex-col gap-2  w-full relative">
                 <Card className=" overflow-hidden w-full mb-16 ">
-                    <div onClick={() => profileBannerRef.current.click()} className="h-[150px]">
+                    <div onClick={() => profileBannerRef.current.click()} className="h-[150px] bg-background-seondary-dark">
                         <img className=" h-full w-full object-cover" src={newProfileBanner.url ?? profileBanner} />
                     </div>
 
                     <img
                         onClick={() => profilePhotoRef.current.click()}
-                        className=' absolute m-auto  top-24  left-8 w-32 h-32 object-cover shadow-md rounded-full  bg-black'
+                        className=' absolute m-auto  top-24  left-8 w-32 h-32 object-cover shadow-md rounded-full  bg-background dark:bg-backgroundBody-dark'
                         src={newProfilePhoto.url ?? profilePhoto} alt='dp'
                     />
 
@@ -134,7 +134,7 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
 
                 <div className=" flex gap-2  w-full">
                     <section className='w-full'>
-                        <label htmlFor="fname" className="block mb-2 font-medium">
+                        <label htmlFor="fname" className="block mb-2  font-semibold">
                             First Name
                         </label>
                         <input
@@ -148,7 +148,7 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
                     </section>
                     <section className='w-full'>
 
-                        <label htmlFor="fname" className="block mb-2 font-medium">
+                        <label htmlFor="fname" className="block mb-2 font-semibold">
                             Last Name
                         </label>
                         <input
@@ -163,7 +163,7 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
                 </div>
 
                 <div className="">
-                    <label htmlFor="description" className="block mb-2 font-medium">
+                    <label htmlFor="description" className="block mb-2 font-semibold">
                         About
                     </label>
                     <textarea
@@ -175,7 +175,7 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="birthdate" className="block mb-2 font-medium">
+                    <label htmlFor="birthdate" className="block mb-2 font-semibold">
                         Birthdate
                     </label>
                     <input

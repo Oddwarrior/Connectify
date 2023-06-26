@@ -37,7 +37,7 @@ export default function CreateModal({ createModalOpen, setCreateModalOpen }) {
                 size="lg"
                 radius="md"
             >
-                <form className="p-4 flex flex-col gap-4 text-sm text-text-primary" onSubmit={handleSubmit}>
+                <form className="p-4 font-poppins flex flex-col gap-4 text-sm text-text-primary" onSubmit={handleSubmit}>
 
                     {/* profile  */}
                     <div className=' flex gap-2 w-[90%] text-xs  items-center'>
