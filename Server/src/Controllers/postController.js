@@ -12,9 +12,10 @@ const createPosts = async (req, res) => {
         res.status(200).send({
             status: "success",
             message: "post has been created",
-            data: { "image": res.req?.file?.filename, "desc": req.desc }
+            data: { "image": res.req?.file?.filename, "description": req.body.description }
         });
     } catch (e) {
+        console.log(e);
         res.status(500).send({
             status: "failure",
             message: e.message,

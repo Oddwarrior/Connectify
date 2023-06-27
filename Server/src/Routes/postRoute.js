@@ -4,7 +4,6 @@ const authController = require("../Controllers/authController");
 const upload = require("../Utils/upload")
 
 router.post("/", authController.verify, upload.single('image'), postController.createPosts);
-router.post("/text", authController.verify, postController.createPosts);
 router.put("/:id", authController.verify, postController.updatePosts);
 router.delete("/:id", authController.verify, postController.deletePosts);
 router.get("/timeline", authController.verify, postController.getTimeline);
