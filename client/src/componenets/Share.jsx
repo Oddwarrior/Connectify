@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import myDp from "../assets/shashank_dp.png"
+import React, { useState, useEffect } from 'react'
 import { BiImageAdd } from 'react-icons/bi';
 import { AiOutlineVideoCameraAdd } from 'react-icons/ai';
 import { MdOutlineAddLocationAlt } from 'react-icons/md';
@@ -7,16 +6,34 @@ import { TbCalendarEvent } from "react-icons/tb"
 import Card from './Card';
 import ImageShareModal from './ImageShareModal';
 import CreateModal from './CreateModal';
+import { useAuth } from '../contexts/AuthContext';
+import default_dp from "../assets/default_dp.png"
 
 const Share = () => {
+
     const [imageModalOpen, setImageModalOpen] = useState(false);
     const [createModalOpen, setCreateModalOpen] = useState(false);
+
+    const [img, setImg] = useState(default_dp);
+
+    const { user } = useAuth();
+
+    useEffect(() => {
+        const imgurl = import.meta.env.VITE_BASE_URL + "/" + user.data.profilePicture;
+        const createImage = async () => {
+            const response = await fetch(imgurl);
+            setImg(response.url);
+        }
+        createImage();
+    }, []);
+
+
 
 
     return (
         <Card className='  px-6 pt-6 pb-4 flex flex-col  text-sm'>
             <div className=' flex gap-4 w-full'>
-                <img className='w-10 h-10 object-contain rounded-full bg-black' src={myDp} alt='dp' />
+                <img className='w-10 h-10 object-cover rounded-full bg-black' src={img} alt='dp' />
                 <div className='w-full flex flex-col items-center justify-center'>
                     <input type='text' onClick={() => setCreateModalOpen(true)} placeholder='Whats Happening ?' className='flex items-center gap-2 px-4 py-2 rounded-xl w-full dark:bg-opacity-50 bg-opacity-50 focus:outline-none bg-background-secondary dark:bg-background-seondary-dark ' />
 
@@ -37,7 +54,7 @@ const Share = () => {
                             <TbCalendarEvent size={"20px"} />
                             <span>Event</span>
                         </li>
-                        <CreateModal createModalOpen={createModalOpen} setCreateModalOpen={setCreateModalOpen} />
+                        <CreateModal createModalOpen={createModalOpen} setCreateModalOpen={setCreateModalOpen} img={img} />
                         <ImageShareModal imageModalOpen={imageModalOpen} setImageModalOpen={setImageModalOpen} />
                     </ul>
 

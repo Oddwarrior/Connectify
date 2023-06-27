@@ -43,45 +43,12 @@ const SuggestionCard = () => {
         user.followers.push(user.data._id);
     }
 
-    // const followers = [
-    //     {
-    //         id: 1,
-    //         image: "https://assets.vogue.in/photos/64241b21a2ad26340905ead4/1:1/w_1600%2Cc_limit/Janhvi%2520Kapoor.jpg",
-    //         name: "John Doe",
-    //         username: "johndoe",
-    //     },
-    //     {
-    //         id: 2,
-    //         image: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSlV6_6xa2OtmeYnqL8OuszQJcpJWOFyW9tqyQ7HLRda6OG2CGNk6N1NzzbnNFfVkJJHEAFy3BMVLE0fcE",
-    //         name: "Virat Kohli",
-    //         username: "vk",
-    //     },
-    //     {
-    //         id: 3,
-    //         image: "http://localhost:3000/default_dp.png",
-    //         name: "Alex Johnson",
-    //         username: "alexjohnson",
-    //     },
-    //     {
-    //         id: 4,
-    //         image: "https://example.com/user4.jpg",
-    //         name: "Emily Davis",
-    //         username: "emilydavis",
-    //     },
-    //     {
-    //         id: 5,
-    //         image: "https://example.com/user5.jpg",
-    //         name: "Michael Brown",
-    //         username: "michaelbrown",
-    //     },
-    //     // Add more follower objects as needed
-    // ];
 
     return (
         <Card className="mt-3">
             <div className=' px-6 p-4  font-semibold'>Suggested Connections</div>
 
-            <div className=' max-h-[40vh] px-6'>
+            <div className=' max-h-[40vh] px-6 overflow-hidden'>
                 {
                     !loaded ? <SuggestionsSkeleton /> :
                         sugesstions?.map((user) => (
@@ -95,11 +62,11 @@ const SuggestionCard = () => {
                                         <span className=' text-text-secondary-dark text-sm'>@{user?.username}</span>
                                     </div>
                                 </Link>
-                                <button onClick={() => handleFollow(user?.username)} className='bg-accent rounded-xl px-4 p-1 text-white font-semibold active:bg-black'>Follow</button>
+                                <button onClick={() => handleFollow(user?.username)} className='bg-accent hover:bg-sky-400  duration-300  rounded-xl px-4 p-1 text-white font-semibold active:bg-black'>Follow</button>
                             </div>
                         ))
                 }
-                {sugesstions?.length != 0 && <button className='  w-full text-center font-semibold pt-2  pb-4 text-accent '>View More</button>}
+                {sugesstions?.length != 0 && <button className='  w-full text-center font-semibold pt-3  pb-4 text-accent '>View More</button>}
 
                 {
                     loaded && sugesstions?.length == 0 &&

@@ -5,14 +5,14 @@ import axios from "axios";
 const INITIAL_STATE = {
     user: JSON.parse(localStorage.getItem('user') || null),
     error: false,
-    theme: (localStorage.getItem('theme') == undefined ? "light" : localStorage.getItem('theme'))
+    theme: ((localStorage.getItem('theme') == undefined) ? "light" : localStorage.getItem('theme'))
 }
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case "LOGIN_SUCCESS": return { user: action.payload, error: false, theme: "light" };
+        case "LOGIN_SUCCESS": return { user: action.payload, error: false, theme: INITIAL_STATE.theme };
         case "LOGIN_FAILED": return { user: null, error: action.payload };
-        case "LOGOUT": return { user: null, error: null };
+        case "LOGOUT": return { user: null, error: null, theme: localStorage.getItem('theme') };
         case "CHANGE_THEME": return { ...state, theme: action.payload };
         case "UPDATE_DATA":
             return { ...state, user: { ...state.user, data: action.payload } };

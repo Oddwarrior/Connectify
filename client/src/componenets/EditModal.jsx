@@ -99,7 +99,7 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
             console.log(error);
             toast.error(error.message);
         }
-        navigate(0);
+        navigate('/home');
         handleClose();
     };
     const handleClose = () => {

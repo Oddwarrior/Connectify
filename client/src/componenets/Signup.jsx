@@ -45,7 +45,9 @@ export const Signup = () => {
                         Email
                     </label>
                     <input
-                        className=" appearance-none  text-sm border rounded-xl w-full py-3 px-3 dark:bg-background-dark dark:border-none  leading-tight focus:outline-none focus:border-accent focus:shadow-accent"
+                        className=" 
+                        
+                        appearance-none  text-sm border rounded-xl w-full py-3 px-3 dark:bg-background-dark dark:border-none  leading-tight focus:outline-none focus:border-accent focus:shadow-accent"
                         id="email"
                         type="email"
                         placeholder="Enter your email"

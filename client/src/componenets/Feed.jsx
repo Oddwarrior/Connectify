@@ -5,14 +5,14 @@ import Post from './Post'
 
 export const posts = [
     {
-        id: 2,
-        image: "https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg",
-        time: "June 1, 2023 12:00 PM",
-        caption: "Beautiful sunset at the beach! #sunset #beachvibes",
-        username: "jelly.fish",
-        comments: 10,
-        likes: 25,
-        profile_image: "https://media.phillyvoice.com/media/images/120522_Lensa_AI.width-696.jpg",
+        id: 7,
+        image: "https://wallpaperaccess.com/thumb/9070071.png",
+        time: "June 1, 2023 11:45 AM",
+        caption: "Vibrant colors and abstract art. #artisticexpression #abstract",
+        username: "olivia_smith",
+        comments: 6,
+        likes: 22,
+        profile_image: "https://example.com/profile7.jpg",
     },
     {
         id: 2,
@@ -23,6 +23,16 @@ export const posts = [
         comments: 5,
         likes: 15,
         profile_image: "https://tostatus.in/wp-content/uploads/2023/02/Single-Boy-DP-2023-1024x1024.jpg",
+    },
+    {
+        id: 2,
+        image: "https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg",
+        time: "June 1, 2023 12:00 PM",
+        caption: "Beautiful sunset at the beach! #sunset #beachvibes",
+        username: "jelly.fish",
+        comments: 10,
+        likes: 25,
+        profile_image: "https://media.phillyvoice.com/media/images/120522_Lensa_AI.width-696.jpg",
     },
     {
         id: 3,
@@ -64,16 +74,7 @@ export const posts = [
         likes: 18,
         profile_image: "https://example.com/profile6.jpg",
     },
-    {
-        id: 7,
-        image: "https://wallpaperaccess.com/thumb/9070071.png",
-        time: "June 1, 2023 11:45 AM",
-        caption: "Vibrant colors and abstract art. #artisticexpression #abstract",
-        username: "olivia_smith",
-        comments: 6,
-        likes: 22,
-        profile_image: "https://example.com/profile7.jpg",
-    },
+
     {
         id: 8,
         image: "https://d1hjkbq40fs2x4.cloudfront.net/2019-10-29/files/canon-portrait-photography-techniques_1934-1_c.jpg",
