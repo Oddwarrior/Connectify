@@ -16,6 +16,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ENDPOINTS } from '../utils/endpoints';
 
+
 const Profile = () => {
     const URL = import.meta.env.VITE_BASE_URL;
     //get user data
@@ -29,12 +30,14 @@ const Profile = () => {
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [following, setFollowing] = useState(true);
     const [loaded, setLoaded] = useState(false);
+    const [posts, setPosts] = useState([]);
 
     const navigate = useNavigate();
 
     //fetch user
     useEffect(() => {
         fetchUser();
+        fetchUserPosts();
         setMyaccount(user.data.username === username);
         return () => {
             setLoaded(false);
@@ -57,7 +60,7 @@ const Profile = () => {
         );
         setCurrentUser(res.data.user);
         setLoaded(true);
-        console.log("profile fetched : " + currentUser?.username);
+        console.log("profile fetched : " + username);
     };
 
 
@@ -107,9 +110,26 @@ const Profile = () => {
         // console.log(res.data);
     }
 
+    const fetchUserPosts = async () => {
+        const postUrl = URL + ENDPOINTS.POST + 'u/' + username;
+        try {
+            const res = await axios.get(postUrl);
+            const fetchedPosts = res?.data;
+            console.log(fetchedPosts);
+            fetchedPosts?.sort((a, b) => { return new Date(b.createdAt) - new Date(a.createdAt) });
+            setPosts(fetchedPosts);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
 
-        !loaded ? <ProfileSkeleton /> :
+        !loaded ?
+            <div className=' flex flex-col gap-2 '>
+                <ProfileSkeleton />
+            </div> :
             <div className='flex flex-col gap-2 md:gap-3 md:p-3  w-full '>
                 <Card className=" overflow-hidden w-full relative">
                     <div className="h-[200px] bg-background-seondary-dark ">
@@ -129,7 +149,7 @@ const Profile = () => {
                             </section>
                             <ul className=' flex pt-2 gap-4  justify-start text-sm'>
                                 <li className=' flex gap-2 items-center justify-center  '>
-                                    <h1 className='font-semibold  '>6</h1>
+                                    <h1 className='font-semibold  '>{posts?.length}</h1>
                                     <span> Posts</span>
                                 </li>
                                 <li className=' flex gap-2 items-center justify-center '>
@@ -148,7 +168,7 @@ const Profile = () => {
                                 <button className={`bg-accent  hover:bg-sky-400  duration-300 rounded-full p-1 px-3 min-w-[96px] text-sm   py-2 text-white font-semibold`}
                                     onClick={handleFollow}>{currentUser?.followings?.includes(user.data._id) ? "Follow Back" : "Follow"}
                                 </button>}
-                            {!myaccount && following && <button className=' border-none bg-accent bg-opacity-20 rounded-full w-24 p-1 py-2 text-accent font-semibold' onClick={handleUnfollow}>Following</button>}
+                            {!myaccount && following && <button className=' border-none   dark:hover:bg-opacity-25 duration-300 text-accent bg-accent bg-opacity-10 rounded-full w-24 p-1 py-2  font-semibold' onClick={handleUnfollow}>Following</button>}
                             {myaccount && <button
                                 className='rounded-full w-28 py-2  bg-black dark:bg-white  text-white dark:text-black font-semibold'
                                 onClick={() => setEditModalOpen(true)}
@@ -159,8 +179,21 @@ const Profile = () => {
                         <EditModal editModalOpen={editModalOpen} setEditModalOpen={setEditModalOpen} profileBanner={profileBanner} profilePhoto={profilePicture} />
                     </div>
                 </Card>
+                <section className=' text-text-secondary text-xs pl-2'>
+                    Posts by {username}
+                </section>
                 <section className='flex flex-col gap-3'>
-                    {/* {posts.filter(post => post.id === 1).map(post => <Post post={post} key={post.username} />)} */}
+                    {!loaded && !posts ? <PostSkeleton /> : posts?.map((post) => {
+                        post.user = currentUser;
+                        return (
+                            <Post post={post} key={post._id} />
+
+                        )
+                    })}
+
+                    {posts?.length == 0 && <Card className=' flex justify-center items-center p-6 text-text-secondary'>
+                        No Posts to show !
+                    </Card>}
 
                 </section>
             </div>

@@ -21,7 +21,7 @@ function App() {
           {/* home */}
           <Route path="/" element={user ? <Home /> : <Navigate to='auth' />} >
             <Route index element={<Navigate to='home' />} />
-            <Route path="home" element={<Suspense fallback={<h1>Loading...</h1>}><Feed /></Suspense>} />
+            <Route path="home" element={<Suspense ><Feed /></Suspense>} />
             <Route path="user/:username" element={<Suspense fallback={<ProfileSkeleton />}><Profile /></Suspense>} />
           </Route >
 

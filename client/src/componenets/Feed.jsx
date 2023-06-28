@@ -7,6 +7,7 @@ import { ENDPOINTS } from "../utils/endpoints";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { PostSkeleton } from './skeletons/PostSkeleton';
+import Card from './Card';
 
 
 // export const posts = [
@@ -140,11 +141,18 @@ const Feed = () => {
                         <Post post={post} key={post._id} />
                     </Suspense>
                 )
-            })}
 
-            {posts?.length == 0 && <div className=' flex justify-center items-center p-6'>
+            })
+
+            }
+
+            {posts && <Card className=' flex justify-center items-center p-6  text-text-secondary'>
+                Finished !
+            </Card>}
+
+            {posts?.length == 0 && <Card className=' flex justify-center items-center p-6  text-text-secondary'>
                 No Posts to show
-            </div>}
+            </Card>}
 
 
 

@@ -21,7 +21,6 @@ const Post = ({ post }) => {
     const [isLiked, setIsLiked] = useState(Likes?.includes(currentUser.data._id) || false);
 
     const handleLikeUnlike = async () => {
-        console.log(Likes);
         // dislike
         if (isLiked) {
             setIsLiked(false);
@@ -62,11 +61,11 @@ const Post = ({ post }) => {
                 {image && <img className='  w-full h-full bg-black rounded object-contain' src={imgurl + "/" + image} alt='post' />}
 
                 <div className='flex flex-col gap-2'>
-                    {description && <div className=' dark:text-text-secondary-dark'>{description}</div>}
+                    {description && <div className=' dark:text-text-secondary-dark pb-2  max-h-24 line-clamp-5  overflow-hidden'>{description}</div>}
 
                     <ul className='flex gap-4 items-center '>
-                        <li className='flex gap-2 '>
-                            <span className='active:animate-ping duration-150' onClick={handleLikeUnlike}>
+                        <li className='flex gap-2 w-10 '>
+                            <span className='active:animate-ping duration-150 ' onClick={handleLikeUnlike}>
                                 {isLiked ? <FcLike size="20px" /> :
                                     <AiOutlineHeart size="20px" />}
                             </span>
