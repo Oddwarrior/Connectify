@@ -12,10 +12,8 @@ import ProfileSkeleton from './skeletons/ProfileSkeleton'
 import { MdVerified } from 'react-icons/md'
 
 
-import { posts } from './Feed';
-
 import { useAuth } from '../contexts/AuthContext';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ENDPOINTS } from '../utils/endpoints';
 
 const Profile = () => {
@@ -32,16 +30,17 @@ const Profile = () => {
     const [following, setFollowing] = useState(true);
     const [loaded, setLoaded] = useState(false);
 
+    const navigate = useNavigate();
 
     //fetch user
     useEffect(() => {
-
         fetchUser();
         setMyaccount(user.data.username === username);
         return () => {
             setLoaded(false);
         };
-    }, [username],);
+    }, [username]);
+
 
     useEffect(() => {
         const setFollowbutton = () => {
@@ -50,7 +49,7 @@ const Profile = () => {
         }
         setFollowbutton();
 
-    }, [user.data.followings, currentUser?._id]);
+    }, [user.data.followings, currentUser?._id, currentUser?.followers]);
 
     const fetchUser = async () => {
         const res = await axios.get(
@@ -161,7 +160,7 @@ const Profile = () => {
                     </div>
                 </Card>
                 <section className='flex flex-col gap-3'>
-                    {posts.filter(post => post.id === 1).map(post => <Post post={post} key={post.username} />)}
+                    {/* {posts.filter(post => post.id === 1).map(post => <Post post={post} key={post.username} />)} */}
 
                 </section>
             </div>

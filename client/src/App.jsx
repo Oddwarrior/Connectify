@@ -4,7 +4,8 @@ import AuthPage from "./pages/AuthPage"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "./componenets/Login";
 import { Signup } from "./componenets/Signup";
-import Feed from "./componenets/Feed";
+
+const Feed = React.lazy(() => import("./componenets/Feed"));
 const Profile = React.lazy(() => import("./componenets/Profile"));
 import { useAuth } from "./contexts/AuthContext";
 import ProfileSkeleton from "./componenets/skeletons/ProfileSkeleton";
@@ -20,7 +21,7 @@ function App() {
           {/* home */}
           <Route path="/" element={user ? <Home /> : <Navigate to='auth' />} >
             <Route index element={<Navigate to='home' />} />
-            <Route path="home" element={<Feed />} />
+            <Route path="home" element={<Suspense fallback={<h1>Loading...</h1>}><Feed /></Suspense>} />
             <Route path="user/:username" element={<Suspense fallback={<ProfileSkeleton />}><Profile /></Suspense>} />
           </Route >
 
