@@ -20,6 +20,7 @@ export default function CreateModal({ createModalOpen, setCreateModalOpen, img: 
     }
 
     const [postData, setPostData] = useState(initial);
+    const [submitted, setSubmitted] = useState(false);
     const fileRef = useRef();
 
     const onImageChange = (e) => {
@@ -29,6 +30,7 @@ export default function CreateModal({ createModalOpen, setCreateModalOpen, img: 
     const handleClose = () => {
         setCreateModalOpen(false);
         setPostData(initial);
+        setSubmitted(false);
     }
 
     const handleSubmit = async (e) => {
@@ -37,7 +39,7 @@ export default function CreateModal({ createModalOpen, setCreateModalOpen, img: 
         const { image, caption } = postData;
 
         if (image || caption) {
-
+            setSubmitted(true);
             try {
                 const postFormdata = new FormData();
                 postFormdata.append("image", image);
@@ -116,7 +118,8 @@ export default function CreateModal({ createModalOpen, setCreateModalOpen, img: 
                         </li>
                     </ul>
 
-                    <button type="submit" className='bg-accent rounded-xl p-1 py-2 text-white font-semibold'> Post</button>
+                    <button type="submit" disabled={submitted} className='bg-accent rounded-xl p-1 py-2 text-white font-semibold'>
+                        {submitted ? "Posting" : "Post"}</button>
                 </form>
                 <input className='hidden' type='file' accept="image/*" ref={fileRef} onChange={onImageChange} />
 
