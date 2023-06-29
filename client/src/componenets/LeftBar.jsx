@@ -11,7 +11,7 @@ import { MdOutlineDarkMode } from "react-icons/md"
 
 import { useAuth } from '../contexts/AuthContext'
 import default_dp from "../assets/default_dp.png"
-import logo from "../assets/logo.png"
+import logo from "../assets/logo_icon.png"
 import Card from './Card'
 import { toast } from 'react-hot-toast'
 
@@ -23,39 +23,42 @@ const LeftBar = () => {
     //
     return (
         <div className=' flex flex-col  bg-background  dark:bg-backgroundBody-dark items-center px-8 gap-8 pt-8 w-full h-screen justify-start '>
-            <img className=' font-extrabold p-4 text-lg  w-full object-contain' src={logo} />
 
-            <ul className='flex flex-col  gap-6 font-semibold duration-300  w-full pl-6  '>
-                <Link to="/"  >
-                    <div className=' flex gap-4  items-center   hover:text-accent hover:transition-colors '>
+            <Link to="/" className='flex  pl-6 gap-2  items-center w-full mt-6 '>
+                <img className=' font-extrabold text-lg w-8 h-8   object-contain' src={logo} />
+                <span className=' font-bold text-xl'>Connectify</span>
+            </Link>
+            <ul className='flex flex-col  gap-6 font-semibold duration-300  w-full pl-6  mt-4 '>
+                <Link to="/" className=' focus:text-accent'  >
+                    <div className=' flex gap-4  items-center   hover:text-b hover:transition-colors '>
                         <HiOutlineHome size={"20px"} />
                         Home
                     </div>
                 </Link>
-                <Link to={`/user/${user.data.username}`}>
-                    <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
+                <Link to={`/user/${user.data.username}`} className=' focus:text-accent'>
+                    <div className=' flex gap-4  items-center   hover:text-sky-400 duration-300  '>
                         <RiAccountCircleLine size={"20px"} />
                         Profile
                     </div>
                 </Link>
-                <Link to='/user/shubh'>
-                    <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
+                <Link className=' focus:text-accent'>
+                    <div className=' flex gap-4  items-center   hover:text-sky-400 duration-300  '>
                         <MdOutlineNotificationsNone size={"20px"} />
                         Notification
                     </div>
                 </Link>
-                <li>
-                    <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
+                <Link className=' focus:text-accent'>
+                    <div className=' flex gap-4  items-center   hover:text-sky-400 duration-300  '>
                         <BiBookmark size={"20px"} />
                         Saved
                     </div>
-                </li>
-                <li>
-                    <div className=' flex gap-4  items-center  hover:text-accent hover:transition-colors '>
+                </Link>
+                <Link className=' focus:text-accent'>
+                    <div className=' flex gap-4  items-center   hover:text-sky-400 duration-300  '>
                         <FiSettings size={"20px"} />
                         Setting
                     </div>
-                </li>
+                </Link>
             </ul>
 
             <MiniProfile />
