@@ -70,21 +70,22 @@ const deletePosts = async (req, res) => {
 const getTimeline = async (req, res) => {
     try {
         const userid = req.user._id;
-        const page = parseInt(req.query.page) - 1 || 0;
-        const limit = parseInt(req.query.limit) || 1;
+        const page = parseInt(req.query.page) - 1;
+        const limit = parseInt(req.query.limit) || 10;
         const user = await User.findById(userid).select("followings");
         const myPostss = await Posts.find({ user: userid })
             .skip(page * limit)
             .limit(limit)
             .sort({ createdAt: "desc" })
-            .populate("user", "username profilePicture");
+            .populate("user", "username profilePicture fname lname");
+
+        //86400000 : last 24 hours
+        //createdAt: { $gte: new Date(new Date().getTime() - 86400000).toISOString(),         },
+
         const followingsPostss = await Promise.all(
             user.followings.map((followingId) => {
                 return Posts.find({
                     user: followingId,
-                    createdAt: {
-                        $gte: new Date(new Date().getTime() - 86400000).toISOString(),
-                    },
                 })
                     .skip(page * limit)
                     .limit(limit)
@@ -95,10 +96,11 @@ const getTimeline = async (req, res) => {
         arr = myPostss.concat(...followingsPostss);
         res.status(200).send({
             status: "success",
-            Postss: arr,
+            posts: arr,
             limit: arr.length,
         });
     } catch (e) {
+        console.log(e);
         res.status(500).send({
             status: "failure",
             message: e.message,
