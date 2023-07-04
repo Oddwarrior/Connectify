@@ -15,6 +15,7 @@ import { MdVerified } from 'react-icons/md'
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ENDPOINTS } from '../utils/endpoints';
+import Refresh from '../utils/Refresh';
 
 
 const Profile = () => {
@@ -33,6 +34,8 @@ const Profile = () => {
     const [posts, setPosts] = useState([]);
 
     const navigate = useNavigate();
+    const axiosJWT = axios.create();
+    Refresh(axiosJWT);
 
     //fetch user
     useEffect(() => {
@@ -85,7 +88,7 @@ const Profile = () => {
 
     const handleFollow = async () => {
         setFollowing(true);
-        const res = await axios.put(
+        const res = await axiosJWT.put(
             URL + "/api/user/" + username + "/follow",
             {},
             {
@@ -98,7 +101,7 @@ const Profile = () => {
     }
     const handleUnfollow = async () => {
         setFollowing(false);
-        const res = await axios.put(
+        const res = await axiosJWT.put(
             URL + "/api/user/" + username + "/unfollow",
             {},
             {
@@ -115,7 +118,7 @@ const Profile = () => {
         try {
             const res = await axios.get(postUrl);
             const fetchedPosts = res?.data;
-            console.log(fetchedPosts);
+            // console.log(fetchedPosts);
             fetchedPosts?.sort((a, b) => { return new Date(b.createdAt) - new Date(a.createdAt) });
             setPosts(fetchedPosts);
 

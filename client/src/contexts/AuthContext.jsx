@@ -40,6 +40,15 @@ const reducer = (state, action) => {
                     },
                 },
             };
+        case "REFRESH_TOKEN":
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    refreshToken: action.payload.refreshToken,
+                    accessToken: action.payload.accessToken,
+                },
+            };
         default: return state;
     }
 }

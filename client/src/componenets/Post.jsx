@@ -11,10 +11,14 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { ENDPOINTS } from '../utils/endpoints';
 import { useAuth } from '../contexts/AuthContext';
+import Refresh from '../utils/Refresh';
 
 const Post = ({ post }) => {
 
     const { user: currentUser } = useAuth();
+    const axiosJWT = axios.create();
+    Refresh(axiosJWT);
+
 
     let { _id, user, description, image, createdAt, likes, comment } = post;
     const [Likes, setLikes] = useState(likes);
@@ -35,7 +39,7 @@ const Post = ({ post }) => {
 
         const URL = `${import.meta.env.VITE_BASE_URL}${ENDPOINTS.POST}${_id}/like`;
         try {
-            const res = await axios.get(URL,
+            const res = await axiosJWT.get(URL,
                 {
                     headers: { Authorization: "Bearer " + currentUser.accessToken },
                 }

@@ -22,7 +22,7 @@ const LeftBar = () => {
 
     //
     return (
-        <div className=' flex flex-col  bg-background  dark:bg-backgroundBody-dark items-center px-8 gap-8 pt-8 w-full h-screen justify-start '>
+        <div className=' flex flex-col  absolute md:relative w-[80%] md:w-full  bg-background  dark:bg-backgroundBody-dark items-center px-8 gap-8 pt-8  h-screen justify-start '>
 
             <Link to="/" className='flex  pl-6 gap-2  items-center w-full mt-6 '>
                 <img className=' font-extrabold text-lg w-8 h-8   object-contain' src={logo} />

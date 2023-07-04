@@ -7,6 +7,7 @@ import axios from 'axios';
 import { ENDPOINTS } from '../utils/endpoints';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import Refresh from '../utils/Refresh';
 
 
 const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanner }) => {
@@ -24,6 +25,10 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
     const profileBannerRef = useRef();
     const [newProfilePhoto, setNewProfilePhoto] = useState({ image: null, url: null });
     const [newProfileBanner, setNewProfileBanner] = useState({ image: null, url: null });
+
+    const axiosJWT = axios.create();
+    Refresh(axiosJWT);
+
 
     useEffect(() => {
         setUserData(intialState);
@@ -61,7 +66,7 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
                 const profilePicFormdata = new FormData();
                 profilePicFormdata.append("image", newProfilePhoto.image);
                 profilePicFormdata.append("type", "profilePicture");
-                const img = await axios.put(url + ENDPOINTS.UPDATE_PROFILE_PICTURE + user.data._id,
+                const img = await axiosJWT.put(url + ENDPOINTS.UPDATE_PROFILE_PICTURE + user.data._id,
                     profilePicFormdata,
                     {
                         headers: { Authorization: "Bearer " + user.accessToken },
@@ -74,7 +79,7 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
                 const profileBannerFormdata = new FormData();
                 profileBannerFormdata.append("image", newProfileBanner.image);
                 profileBannerFormdata.append("type", "profileBanner");
-                const img = await axios.put(url + ENDPOINTS.UPDATE_PROFILE_PICTURE + user.data._id,
+                const img = await axiosJWT.put(url + ENDPOINTS.UPDATE_PROFILE_PICTURE + user.data._id,
                     profileBannerFormdata,
                     {
                         headers: { Authorization: "Bearer " + user.accessToken },
@@ -83,7 +88,7 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
                 userData.profileBanner = img.data.profileBanner;
             }
 
-            const updatedData = await axios.put(url + ENDPOINTS.UPDATE_USER + user.data._id,
+            const updatedData = await axiosJWT.put(url + ENDPOINTS.UPDATE_USER + user.data._id,
                 userData,
                 {
                     headers: { Authorization: "Bearer " + user.accessToken },

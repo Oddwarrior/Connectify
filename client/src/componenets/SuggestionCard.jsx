@@ -9,6 +9,7 @@ import axios from 'axios'
 import SuggestionsSkeleton from './skeletons/SuggestionsSkeleton';
 import default_dp from "../assets/default_dp.png"
 import NoSuggestions from "../assets/NoSuggestions.png"
+import Refresh from '../utils/Refresh';
 
 const SuggestionCard = () => {
     const URL = import.meta.env.VITE_BASE_URL;
@@ -16,6 +17,11 @@ const SuggestionCard = () => {
 
     const [sugesstions, setSugesstions] = useState(null);
     const [loaded, setLoaded] = useState(false);
+
+    const axiosJWT = axios.create();
+    Refresh(axiosJWT);
+
+
     useEffect(() => {
         fetchSggestions();
         return () => {
@@ -32,7 +38,7 @@ const SuggestionCard = () => {
     }
 
     const handleFollow = async (userToFollow) => {
-        const res = await axios.put(
+        const res = await axiosJWT.put(
             URL + "/api/user/" + userToFollow + "/follow",
             {},
             {

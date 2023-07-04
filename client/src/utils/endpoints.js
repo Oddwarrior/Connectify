@@ -7,4 +7,5 @@ export const ENDPOINTS = {
     "UPDATE_PROFILE_PICTURE": '/api/user/profilePicture/',
     "POST": "/api/post/",
     "TIMELINE": "/api/post/timeline",
+    "REFRESH": "/api/user/refresh"
 }

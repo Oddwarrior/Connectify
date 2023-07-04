@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { PostSkeleton } from './skeletons/PostSkeleton';
 import Card from './Card';
+import Refresh from '../utils/Refresh';
 
 
 // export const posts = [
@@ -101,6 +102,9 @@ const Feed = () => {
     const { user } = useAuth();
     const [posts, setPosts] = useState([]);
     const [Loading, setLoading] = useState(true);
+    const axiosJWT = axios.create();
+    Refresh(axiosJWT);
+
 
     useEffect(() => {
         getPosts();
@@ -113,7 +117,7 @@ const Feed = () => {
         const page = 1;
         const URL = `${import.meta.env.VITE_BASE_URL}${ENDPOINTS.TIMELINE}?page=${page}&limit=${limit}`;
         try {
-            const res = await axios.get(URL,
+            const res = await axiosJWT.get(URL,
                 {
                     headers: { Authorization: "Bearer " + user.accessToken },
                 }
