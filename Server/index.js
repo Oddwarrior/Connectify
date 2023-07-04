@@ -12,7 +12,11 @@ const PORT = 3000;
 const app = express();
 
 connectDB();
-app.use(cors());
+app.use(cors(
+    {
+        origin: "*"
+    }
+));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));

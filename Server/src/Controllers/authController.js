@@ -102,17 +102,17 @@ const logout = async (req, res) => {
 };
 
 const verify = async (req, res, next) => {
-    const authHeader = req.headers.authorization;
-    if (!authHeader) {
-        return res.status(403).json("You are not authorized");
-    }
     try {
+        const authHeader = req.headers.authorization;
+        if (!authHeader) {
+            return res.status(403).json("You are not authorized");
+        }
         const token = authHeader.split(" ")[1];
         if (authHeader) {
             jwt.verify(token, process.env.JWT_SECRET, async (err, user) => {
                 if (err) {
                     console.log(err.message);
-                    throw new Error("token is not valid!");
+                    return res.status(500).json("token is not valid!");
                 }
                 req.user = user;
                 const currentUser = await User.findById({ _id: req.user._id });
@@ -146,6 +146,7 @@ const refresh = async (req, res) => {
         if (!token) {
             return res.status(200).send({
                 status: "failure",
+                token,
                 message: "Refresh token is not valid!",
             });
         }

@@ -4,24 +4,22 @@ const Comment = require("../Models/commentModel");
 
 const createPosts = async (req, res) => {
     req.body.user = req.user._id;
-
-    req.body.image = res.req?.file?.filename;
-    const newPosts = new Posts(req.body);
+    const newPost = new Posts(req.body);
     try {
-        await newPosts.save();
+        await newPost.save();
         res.status(200).send({
             status: "success",
-            message: "post has been created",
-            data: { "image": res.req?.file?.filename, "description": req.body.description }
+            message: "article has been created",
+            data: req.body
         });
     } catch (e) {
-        console.log(e);
         res.status(500).send({
             status: "failure",
             message: e.message,
         });
     }
 };
+
 const updatePosts = async (req, res) => {
     try {
         const post = await Posts.findById(req.params.id);
