@@ -103,7 +103,7 @@ const Feed = () => {
     const [posts, setPosts] = useState([]);
     const [Loading, setLoading] = useState(true);
     const axiosJWT = axios.create();
-    Refresh(axiosJWT);
+    // Refresh(axiosJWT);
 
 
     useEffect(() => {

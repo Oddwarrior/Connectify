@@ -8,6 +8,8 @@ import axios from 'axios';
 import { ENDPOINTS } from "../utils/endpoints";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { BeatLoader } from 'react-spinners'
+import Refresh from "../utils/Refresh";
 
 
 export default function CreateModal({ createModalOpen, setCreateModalOpen, img: profilePicture }) {
@@ -19,9 +21,13 @@ export default function CreateModal({ createModalOpen, setCreateModalOpen, img: 
         url: "",
     }
 
+
     const [postData, setPostData] = useState(initial);
     const [submitted, setSubmitted] = useState(false);
     const fileRef = useRef();
+    const axiosJWT = axios.create();
+    // Refresh(axiosJWT);
+
 
     const onImageChange = (e) => {
         const img = e.target.files?.[0];
@@ -35,15 +41,30 @@ export default function CreateModal({ createModalOpen, setCreateModalOpen, img: 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         const url = import.meta.env.VITE_BASE_URL + ENDPOINTS.POST;
         const { image, caption } = postData;
 
         if (image || caption) {
             setSubmitted(true);
             try {
+                let imgurl = "";
+                if (image) {
+                    const formDataFile = new FormData();
+                    formDataFile.append("file", image);
+                    formDataFile.append("upload_preset", "connectify");
+
+                    const res = await axiosJWT.post(
+                        import.meta.env.VITE_CLOUDINARY_URL,
+                        formDataFile
+                    );
+                    imgurl = res.data.secure_url;
+
+                }
+
                 const postFormdata = new FormData();
-                postFormdata.append("image", image);
                 postFormdata.append("description", caption);
+                postFormdata.append("image", imgurl);
 
                 const res = await axios.post(url,
                     postFormdata,
@@ -52,7 +73,7 @@ export default function CreateModal({ createModalOpen, setCreateModalOpen, img: 
                     }
                 );
 
-                // console.log(res.data);
+                console.log(res.data);
                 toast.success("Post created")
 
             } catch (error) {
@@ -119,7 +140,8 @@ export default function CreateModal({ createModalOpen, setCreateModalOpen, img: 
                     </ul>
 
                     <button type="submit" disabled={submitted} className='bg-accent rounded-xl p-1 py-2 text-white font-semibold'>
-                        {submitted ? "Posting" : "Post"}</button>
+                        {submitted ? <BeatLoader color='white' size={8} /> : "Post"}
+                    </button>
                 </form>
                 <input className='hidden' type='file' accept="image/*" ref={fileRef} onChange={onImageChange} />
 

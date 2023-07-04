@@ -17,7 +17,7 @@ const Post = ({ post }) => {
 
     const { user: currentUser } = useAuth();
     const axiosJWT = axios.create();
-    Refresh(axiosJWT);
+    // Refresh(axiosJWT);
 
 
     let { _id, user, description, image, createdAt, likes, comment } = post;
@@ -56,13 +56,13 @@ const Post = ({ post }) => {
         <Card className={'rounded-none md:rounded-xl'}>
             <div className='  w-full rounded-xl  p-6 flex flex-col gap-4 text-sm '>
                 <Link to={`/user/${user.username}`} className=' flex gap-4 items-center'>
-                    <img className='w-10 h-10 object-cover rounded-full bg-black' src={imgurl + "/" + user.profilePicture} alt='dp' />
+                    <img className='w-10 h-10 object-cover rounded-full bg-black' src={user.profilePicture} alt='dp' />
                     <div>
                         <div className='font-semibold'>{user.username}</div>
                         <span className=' dark:text-text-secondary-dark text-xs' > {moment(createdAt).fromNow()}</span>
                     </div>
                 </Link>
-                {image && <img className='  w-full h-full bg-black rounded object-contain' src={imgurl + "/" + image} alt='post' />}
+                {image && <img className='  w-full h-full bg-black rounded object-contain' src={image} alt='post' />}
 
                 <div className='flex flex-col gap-2'>
                     {description && <div className=' dark:text-text-secondary-dark pb-2  max-h-24 line-clamp-5  overflow-hidden'>{description}</div>}

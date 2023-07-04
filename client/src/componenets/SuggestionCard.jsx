@@ -19,7 +19,7 @@ const SuggestionCard = () => {
     const [loaded, setLoaded] = useState(false);
 
     const axiosJWT = axios.create();
-    Refresh(axiosJWT);
+    // Refresh(axiosJWT);
 
 
     useEffect(() => {
@@ -60,7 +60,7 @@ const SuggestionCard = () => {
                         sugesstions?.map((user) => (
                             <div key={user?._id} className=' w-full rounded-xl p-2   flex justify-between items-center gap-4 text-sm'>
                                 <Link to={`/user/${user?.username}`} className='flex gap-2'>
-                                    <img className='w-10 h-10 object-cover rounded-full bg-background-dark' src={loaded ? URL + "/" + user?.profilePicture : default_dp} alt='dp' />
+                                    <img className='w-10 h-10 object-cover rounded-full bg-background-dark' src={loaded ? user?.profilePicture : default_dp} alt='dp' />
                                     <div>
                                         <div className='font-semibold flex  capitalize items-center gap-2'>
                                             <h1>{user?.fname + " " + user?.lname}</h1>

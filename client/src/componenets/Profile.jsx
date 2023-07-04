@@ -26,8 +26,6 @@ const Profile = () => {
 
     const [currentUser, setCurrentUser] = useState(null);
     const [myaccount, setMyaccount] = useState(false);
-    const [profilePicture, setProfilePicture] = useState(default_dp);
-    const [profileBanner, setProfileBanner] = useState(default_banner);
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [following, setFollowing] = useState(true);
     const [loaded, setLoaded] = useState(false);
@@ -35,7 +33,7 @@ const Profile = () => {
 
     const navigate = useNavigate();
     const axiosJWT = axios.create();
-    Refresh(axiosJWT);
+    // Refresh(axiosJWT);
 
     //fetch user
     useEffect(() => {
@@ -67,22 +65,6 @@ const Profile = () => {
     };
 
 
-    //load profile images
-    useEffect(() => {
-        createProfilePicture(currentUser?.profilePicture);
-        createProfileBanner(currentUser?.profileBanner)
-    }, [currentUser]);
-
-    const createProfilePicture = async (imageName) => {
-        let imgurl = URL + '/' + imageName;
-        const response = await fetch(imgurl);
-        setProfilePicture(response.url);
-    }
-    const createProfileBanner = async (imageName) => {
-        let imgurl = URL + '/' + imageName;
-        const response = await fetch(imgurl);
-        setProfileBanner(response.url);
-    }
 
     //folllow unfollow
 
@@ -136,10 +118,10 @@ const Profile = () => {
             <div className='flex flex-col gap-2 md:gap-3 md:p-3  w-full '>
                 <Card className=" overflow-hidden w-full relative">
                     <div className="h-[200px] bg-background-seondary-dark ">
-                        <img className=" h-full w-full object-cover border-none " src={profileBanner} />
+                        <img className=" h-full w-full object-cover border-none " src={currentUser?.profileBanner} />
                     </div>
                     <div>
-                        <img className='  absolute m-auto  top-24  left-8 w-40 h-40 object-cover shadow-md rounded-full bg-gray-200 dark:bg-backgroundBody-dark' src={profilePicture} alt='dp' />
+                        <img className='  absolute m-auto  top-24  left-8 w-40 h-40 object-cover shadow-md rounded-full bg-gray-200 dark:bg-backgroundBody-dark' src={currentUser?.profilePicture} alt='dp' />
 
                     </div>
 
@@ -179,7 +161,7 @@ const Profile = () => {
                             </button>
                             }
                         </div>
-                        <EditModal editModalOpen={editModalOpen} setEditModalOpen={setEditModalOpen} profileBanner={profileBanner} profilePhoto={profilePicture} />
+                        <EditModal editModalOpen={editModalOpen} setEditModalOpen={setEditModalOpen} profileBanner={user.data.profileBanner} profilePhoto={user.data.profilePicture} />
                     </div>
                 </Card>
                 <section className=' text-text-secondary text-xs pl-2'>

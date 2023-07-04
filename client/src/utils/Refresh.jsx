@@ -13,7 +13,7 @@ const Refresh = (instance) => {
             const res = await axios.post(URL, {
                 token: user.refreshToken,
             });
-            dispatch({ type: "REFRESH_TOKEN", payload: res.data });
+            if (res) dispatch({ type: "REFRESH_TOKEN", payload: res.data });
             console.log("token refreshed");
             return res.data;
         } catch (err) {

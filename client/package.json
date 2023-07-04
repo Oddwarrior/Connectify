@@ -23,6 +23,7 @@
     "react-icons": "^4.9.0",
     "react-loading-skeleton": "^3.3.1",
     "react-router-dom": "^6.13.0",
+    "react-spinners": "^0.13.8",
     "react-suspense": "^0.1.0"
   },
   "devDependencies": {

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { BeatLoader } from 'react-spinners'
 import { ENDPOINTS } from '../utils/endpoints';
 
 
@@ -11,10 +12,12 @@ export const Signup = () => {
     const [lname, setLname] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [Loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true)
         try {
             const URL = import.meta.env.VITE_BASE_URL + ENDPOINTS.SIGNUP;
             const signupData = {
@@ -27,6 +30,7 @@ export const Signup = () => {
             const response = await axios.post(URL, signupData);
             console.log(response.data);
             toast.success(response.data.message)
+
             navigate('/auth/login')
         }
         catch (error) {
@@ -34,6 +38,7 @@ export const Signup = () => {
             console.log(message);
             toast.error(message)
         }
+        setLoading(false);
     };
 
     return (
@@ -119,7 +124,7 @@ export const Signup = () => {
                         className=" bg-accent hover:bg-black duration-300 text-white font-semibold py-2 px-4 rounded-full focus:outline-none  focus:border-accent focus:shadow-accent"
                         type="submit"
                     >
-                        Sign Up
+                        {Loading ? <BeatLoader color='white' size={8} /> : "Sign up"}
                     </button>
                 </div>
             </form>

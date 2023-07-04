@@ -1,13 +1,15 @@
 import React from 'react'
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import Refresh from '../utils/Refresh';
+
 import { Modal, Button, Group } from "@mantine/core";
 import Card from './Card';
-import { useAuth } from '../contexts/AuthContext';
+import { BeatLoader } from 'react-spinners'
 import axios from 'axios';
 import { ENDPOINTS } from '../utils/endpoints';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import Refresh from '../utils/Refresh';
 
 
 const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanner }) => {
@@ -27,7 +29,7 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
     const [newProfileBanner, setNewProfileBanner] = useState({ image: null, url: null });
 
     const axiosJWT = axios.create();
-    Refresh(axiosJWT);
+    // Refresh(axiosJWT);
 
 
     useEffect(() => {
@@ -63,30 +65,31 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
         try {
             let url = import.meta.env.VITE_BASE_URL;
             if (newProfilePhoto.image) {
-                const profilePicFormdata = new FormData();
-                profilePicFormdata.append("image", newProfilePhoto.image);
-                profilePicFormdata.append("type", "profilePicture");
-                const img = await axiosJWT.put(url + ENDPOINTS.UPDATE_PROFILE_PICTURE + user.data._id,
-                    profilePicFormdata,
-                    {
-                        headers: { Authorization: "Bearer " + user.accessToken },
-                    }
+
+                const formDataFile = new FormData();
+                formDataFile.append("file", newProfilePhoto.image);
+                formDataFile.append("upload_preset", "connectify");
+
+                const img = await axiosJWT.post(
+                    import.meta.env.VITE_CLOUDINARY_URL,
+                    formDataFile
                 );
-                userData.profilePhoto = img.data.profilePhoto;
+
+                userData.profilePicture = img.data.secure_url;
             }
 
             if (newProfileBanner.image) {
-                const profileBannerFormdata = new FormData();
-                profileBannerFormdata.append("image", newProfileBanner.image);
-                profileBannerFormdata.append("type", "profileBanner");
-                const img = await axiosJWT.put(url + ENDPOINTS.UPDATE_PROFILE_PICTURE + user.data._id,
-                    profileBannerFormdata,
-                    {
-                        headers: { Authorization: "Bearer " + user.accessToken },
-                    }
+                const formDataFile = new FormData();
+                formDataFile.append("file", newProfileBanner.image);
+                formDataFile.append("upload_preset", "connectify");
+
+                const img = await axiosJWT.post(
+                    import.meta.env.VITE_CLOUDINARY_URL,
+                    formDataFile
                 );
-                userData.profileBanner = img.data.profileBanner;
+                userData.profileBanner = img.data.secure_url;
             }
+
 
             const updatedData = await axiosJWT.put(url + ENDPOINTS.UPDATE_USER + user.data._id,
                 userData,
@@ -201,7 +204,7 @@ const EditModal = ({ editModalOpen, setEditModalOpen, profilePhoto, profileBanne
                     onSubmit={handleSubmit}
                     className='bg-accent rounded-full p-1 py-2 text-white font-semibold focus:text-gray-500'
                 >
-                    {saving ? "Saving.." : "Save"}
+                    {saving ? <BeatLoader color='white' size={8} /> : "Save"}
                 </button>
 
 

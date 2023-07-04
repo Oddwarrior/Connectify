@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { ENDPOINTS } from '../utils/endpoints';
-import { useAuth } from '../contexts/AuthContext';
+import { BeatLoader } from 'react-spinners'
+
 
 export const Login = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [Loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const { dispatch } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true)
         try {
             const URL = import.meta.env.VITE_BASE_URL + ENDPOINTS.LOGIN;
             const loginData = {
@@ -33,6 +37,7 @@ export const Login = () => {
             console.log(message);
             toast.error(message)
         }
+        setLoading(false);
 
     };
 
@@ -75,7 +80,7 @@ export const Login = () => {
                         className=" bg-accent hover:bg-black duration-300 text-white font-semibold py-2 px-4 rounded-full focus:outline-none  focus:border-accent focus:shadow-accent"
                         type="submit"
                     >
-                        Login
+                        {Loading ? <BeatLoader color='white' size={8} /> : "Login"}
                     </button>
                 </div>
             </form>

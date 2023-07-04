@@ -22,7 +22,7 @@ const LeftBar = () => {
 
     //
     return (
-        <div className=' flex flex-col  absolute md:relative w-[80%] md:w-full  bg-background  dark:bg-backgroundBody-dark items-center px-8 gap-8 pt-8  h-screen justify-start '>
+        <div className=' flex flex-col   w-[80%] md:w-full  bg-background  dark:bg-backgroundBody-dark items-center px-8 gap-8 pt-8  h-screen justify-start '>
 
             <Link to="/" className='flex  pl-6 gap-2  items-center w-full mt-6 '>
                 <img className=' font-extrabold text-lg w-8 h-8   object-contain' src={logo} />
@@ -70,14 +70,9 @@ const MiniProfile = () => {
     const navigate = useNavigate();
     const { user, dispatch, theme } = useAuth();
 
-
-    const [img, setImg] = useState(default_dp);
     const { fname, lname, username, profilePicture } = user.data;
-    const imgurl = import.meta.env.VITE_BASE_URL + "/" + profilePicture;
 
-    useEffect(() => {
-        createImage();
-    }, [user]);
+
 
     useEffect(() => {
         if (theme == "dark") document.documentElement.classList.add("dark");
@@ -88,11 +83,6 @@ const MiniProfile = () => {
     const handleTheme = () => {
         if (theme == "light") dispatch({ type: "CHANGE_THEME", payload: "dark" });
         else dispatch({ type: "CHANGE_THEME", payload: "light" });
-    }
-
-    const createImage = async () => {
-        const response = await fetch(imgurl);
-        setImg(response.url);
     }
 
     const handleLogout = () => {
@@ -109,7 +99,7 @@ const MiniProfile = () => {
         <Card className='flex flex-col gap-3 p-4  bg-backgroundBody'>
             <Link to={`/user/${user.data.username}`} className=' flex gap-2 w-[90%] text-xs  items-center '>
 
-                <img className='w-10 h-10 object-cover  rounded-full bg-black' src={img} alt='' />
+                <img className='w-10 h-10 object-cover  rounded-full bg-black' src={profilePicture} alt='' />
 
                 <div>
                     <div className='font-semibold  line-clamp-1 capitalize'>{fname + " " + lname}</div>
