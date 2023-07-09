@@ -62,12 +62,9 @@ export default function CreateModal({ createModalOpen, setCreateModalOpen, img: 
 
                 }
 
-                const postFormdata = new FormData();
-                postFormdata.append("description", caption);
-                postFormdata.append("image", imgurl);
 
                 const res = await axios.post(url,
-                    postFormdata,
+                    { description: caption, image: imgurl },
                     {
                         headers: { Authorization: "Bearer " + user.accessToken },
                     }

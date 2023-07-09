@@ -9,6 +9,7 @@ const Feed = React.lazy(() => import("./componenets/Feed"));
 const Profile = React.lazy(() => import("./componenets/Profile"));
 import { useAuth } from "./contexts/AuthContext";
 import ProfileSkeleton from "./componenets/skeletons/ProfileSkeleton";
+import { OpenedPost } from "./componenets/OpenedPost";
 
 
 function App() {
@@ -21,9 +22,11 @@ function App() {
           {/* home */}
           <Route path="/" element={user ? <Home /> : <Navigate to='auth' />} >
             <Route index element={<Navigate to='home' />} />
-            <Route path="home" element={<Suspense ><Feed /></Suspense>} />
+            <Route path="home" element={<Suspense ><Feed /></Suspense>} >
+            </Route>
             <Route path="user/:username" element={<Suspense fallback={<ProfileSkeleton />}><Profile /></Suspense>} />
           </Route >
+          <Route path="/post/:postId" element={<OpenedPost />} />
 
           {/* auth  */}
           <Route path="auth" element={user ? <Navigate to="/" /> : <AuthPage />} >

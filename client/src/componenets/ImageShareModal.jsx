@@ -1,9 +1,12 @@
 import { useState, useRef } from "react";
 import { Modal, Button, Group } from "@mantine/core";
 import { AiOutlineCloudUpload } from 'react-icons/ai'
+import { useAuth } from "../contexts/AuthContext";
 
 
 export default function ImageShareModal({ imageModalOpen, setImageModalOpen }) {
+    const { user } = useAuth();
+    const { fname, lname, username, profilePicture } = user.data;
     const initial = {
         image: "",
         caption: "",
@@ -46,10 +49,10 @@ export default function ImageShareModal({ imageModalOpen, setImageModalOpen }) {
                     </div>
                     {/* profile  */}
                     <div className=' flex gap-2 w-[90%] text-xs  items-center'>
-                        <img className='w-10 h-10 object-contain rounded-full bg-black' src="" alt='dp' />
+                        <img className='w-10 h-10 object-cover rounded-full bg-black' src={profilePicture} alt='dp' />
                         <div>
-                            <div className='font-semibold '>Shashank Jagtap</div>
-                            <span className=' dark:text-text-secondary-dark' >@shashak.jagtap</span>
+                            <div className='font-semibold  capitalize'>{fname + " " + lname}</div>
+                            <span className=' dark:text-text-secondary-dark' >@{username}</span>
                         </div>
                     </div>
                     {/* caption  */}

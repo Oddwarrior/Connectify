@@ -51,10 +51,9 @@ const Post = ({ post }) => {
     }
 
 
-    const imgurl = import.meta.env.VITE_BASE_URL;
     return (
         <Card className={'rounded-none md:rounded-xl'}>
-            <div className='  w-full rounded-xl  p-6 flex flex-col gap-4 text-sm '>
+            <div className='  w-full rounded-xl py-3 px-3  lg:p-6 flex flex-col gap-4 text-sm '>
                 <Link to={`/user/${user.username}`} className=' flex gap-4 items-center'>
                     <img className='w-10 h-10 object-cover rounded-full bg-black' src={user.profilePicture} alt='dp' />
                     <div>

@@ -136,7 +136,7 @@ const Feed = () => {
 
 
     return (
-        <section className='flex flex-col gap-2 md:gap-3 md:p-3  '>
+        <section className='flex flex-col gap-2 p-0 md:gap-3 md:p-3  w-full '>
             <Share />
 
             {Loading ? <PostSkeleton /> : posts?.map((post) => {
