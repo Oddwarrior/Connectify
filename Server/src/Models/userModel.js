@@ -36,11 +36,11 @@ const UserSchema = new mongoose.Schema({
     },
     profilePicture: {
         type: String,
-        default: "default_dp.png",
+        default: "https://res.cloudinary.com/dbhjrooyx/image/upload/v1688552722/connectify/gqbi6xgcvj68nvys6sk3.png",
     },
     profileBanner: {
         type: String,
-        default: "default_banner.png",
+        default: "https://res.cloudinary.com/dbhjrooyx/image/upload/v1688551150/connectify/txvx1bwgxcpbrcn17a0l.png",
     },
     followers: {
         type: Array,
