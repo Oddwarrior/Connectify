@@ -278,7 +278,7 @@ const searchUsers = async (req, res) => {
         const users = await User.find({
             username: { $regex: search, $options: "i" },
         })
-            .select("_id username profilePicture")
+            .select("_id username fname lname profilePicture")
             .limit(limit);
         const totalUsers = users.length;
         res.status(200).send({
